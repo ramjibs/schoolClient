@@ -1,0 +1,155 @@
+import React, { Component } from 'react'
+import Login from '../../components/Login/Login'
+import styles from './LoginContainer.module.css'
+import { connect } from 'react-redux'
+import * as actionCreators from '../../store/actions'
+import checkValidityHandler from '../../FormValidation/formValidation'
+class LoginContainer extends Component {
+
+    state = {
+        controls: {
+            userId: {
+                controlType: 'input',
+                controlConfig: {
+                    type: 'text',
+                    name: 'userid',
+                    id: 'userid',
+                    placeholder: 'Your Email or User ID',
+                    disabled: false
+                },
+                label: 'User ID',
+                value: '',
+                valid: false,
+                errorMessage: '',
+                touched: false,
+                validation: {
+                    required: true,
+                },
+                // animateInput:true,
+                // animateLabel: true
+
+            },
+            password: {
+                controlType: 'input',
+                controlConfig: {
+                    type: 'password',
+                    name: 'password',
+                    id: 'password',
+                    placeholder: 'Your Password',
+                    disabled: false
+                },
+                label: 'Password',
+                value: '',
+                valid: false,
+                errorMessage: '',
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 8
+                },
+                // animateInput:true,
+                // animateLabel: true
+
+            },
+
+        },
+
+    }
+
+    componentDidUpdate() {
+        console.log('inside login')
+        if(this.props.autoLogin && this.props.token){
+            this.props.history.replace('/home')
+        }
+      
+    }
+
+   
+    valueChangeHandler = (event, key) => {
+        
+        event.preventDefault();
+        let updatedControls = {
+            ...this.state.controls
+        }
+        let control = updatedControls[key]
+        control.value = event.target.value
+        control.touched = true
+        const validtityResult = checkValidityHandler(control.validation, control.value)
+        control.valid = validtityResult.isValid
+        control.errorMessage = validtityResult.errorMessage
+
+        updatedControls[key] = control
+
+        this.setState({
+            controls: updatedControls
+        })
+        
+    }
+
+    loginHandler = (event) => {
+        event.preventDefault();
+        this.props.onLogin(this.state.controls.userId.value, this.state.controls.password.value)
+
+    }
+
+    signUpHandler = ()=>{
+        this.props.history.push('/signup')
+    }
+    render() {
+        
+        let controls = []
+        let isLoginDisabled = true
+        for (let key in this.state.controls) {
+            controls.push({
+                id: key,
+                control: this.state.controls[key]
+            })
+            isLoginDisabled = this.state.controls[key].valid && isLoginDisabled
+
+
+        }
+        
+        
+        return (
+
+            <div className={styles.LoginContainer}>
+                <h3 style={{
+                        'textTransform': 'uppercase',
+                        'letterSpacing': '2px'
+                    }}>login</h3>
+                <Login
+                    controls={controls}
+                    changed={this.valueChangeHandler}
+                    login={this.loginHandler}
+                    isLoginDisabled={!isLoginDisabled}
+                    loading={this.props.loading}
+                    error={this.props.error}
+                    signUp={this.signUpHandler}
+                     />
+            </div>
+
+
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        loading: state.login.loading,
+        error: state.login.error,
+        token: state.login.token,
+        autoLogin: state.auth.autoLogin
+    }
+}
+
+
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: (userid, password) => dispatch(actionCreators.login(userid, password)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

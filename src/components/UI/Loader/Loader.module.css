@@ -1,0 +1,165 @@
+.Loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+  }
+  .Loader:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid  #008080;;
+    border-color: #008080 transparent #008080 transparent;
+    animation: Loader 1.2s linear infinite;
+  }
+  @keyframes Loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  
+  .spinnerbox {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+.configureborder1 {
+    width: 115px;
+    height: 115px;
+    padding: 3px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #008080;
+    
+    animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+  }
+  
+  .configureborder2 {
+    width: 115px;
+    height: 115px;
+    padding: 3px;
+    left: -115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #008080;
+    
+    transform: rotate(45deg);
+    animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+  }
+  
+  .configurecore {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  @keyframes configure-clockwise {
+    0% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes configure-xclockwise {
+    0% {
+      transform: rotate(45deg);
+    }
+    25% {
+      transform: rotate(-45deg);
+    }
+    50% {
+      transform: rotate(-135deg);
+    }
+    75% {
+      transform: rotate(-225deg);
+    }
+    100% {
+      transform: rotate(-315deg);
+    }
+  }
+  
+
+  @media only screen and (max-width: 400px){
+    .Loader {
+     
+      width: 40px;
+      height: 40px;
+      
+    }
+    .Loader:after {
+      
+      width: 32px;
+      height: 32px;
+      margin: 4px;
+     
+    }
+    .configureborder1 {
+      width: 57px;
+      height: 57px;
+      padding: 3px;
+    }
+    
+    .configureborder2 {
+      width: 57px;
+      height: 57px;
+      padding: 3px;
+      left: -57px;
+      
+    }
+  
+  }
+   @media only screen and (min-width: 410px) and (max-width: 767px) {  
+    
+    .Loader {
+     
+      width: 40px;
+      height: 40px;
+      
+    }
+    .Loader:after {
+      
+      width: 32px;
+      height: 32px;
+      margin: 4px;
+     
+    }
+    .configureborder1 {
+      width: 57px;
+      height: 57px;
+      padding: 3px;
+    }
+    
+    .configureborder2 {
+      width: 57px;
+      height: 57px;
+      padding: 3px;
+      left: -57px;
+      
+    }
+   }
+  

@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Suspense, lazy } from 'react';
+import AutoLoginContainer from './containers/AutoLoginContainer/AutoLoginContainer';
+import { connect } from 'react-redux'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Loader from './components/UI/Loader/Loader'
+import ErrorBoundry from './components/UI/Error/ErrorBoundry'
+import { retry } from './utility/RetryChunk'
+const Login = lazy(() => retry(() => import('./containers/LoginContainer/LoginContainer')))
+const ForgotPassword = lazy(() => retry(() => import('./containers/ForgotPassword/ForgotPasswordContainer')))
+const Signup = lazy(() =>retry(() => import('./containers/SignupContainer/SignupContainer')))
+const Home = lazy(() => retry(() => import('./containers/HomeContainer/HomeContainer')))
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  
+
+  render() {
+
+    return (
+      <ErrorBoundry>
+        <Switch>
+          <Suspense fallback={<Loader />}>
+           
+            <Route path='/login'   component={Login} />
+            <Route path='/forgot-password'   component={ForgotPassword} />
+            <Route path='/signup'   component={Signup} />
+            {this.props.autoLogin ? <Route path='/home'  component={Home} /> : null}
+            <Route path='/' exact component={AutoLoginContainer} />
+            
+          </Suspense>
+        </Switch>
+      </ErrorBoundry>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    autoLogin: state.auth.autoLogin,
+  }
+}
+
+
+
+export default connect(mapStateToProps)(App);
+

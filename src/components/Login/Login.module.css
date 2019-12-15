@@ -1,0 +1,194 @@
+
+.LoginBox{
+
+   
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   background-color:#FFF;
+   width: 500px;
+   padding: 25px;
+   box-sizing: border-box;
+   box-shadow: none;
+   border-style: dotted;
+   border: 1.5px solid rgb(229, 227, 221);
+   border-radius: 4px;
+   /* animation-name: login; */
+   animation-fill-mode: forwards;
+   animation-duration: 0.5s;
+   animation-timing-function: linear;
+   box-shadow: 5px 10px 10px 5px rgba(80, 76, 76, 0.2);
+   
+}
+
+@keyframes login {
+  0%{
+    width: 0px;
+    height: 0px;}
+  10%{
+    width: 50px;
+   height: 50px;
+  }
+  20%{
+    width: 100px;
+   height: 100px;
+  }
+  30%{
+    width: 150px;
+   height: 150px;
+  }
+  40%{
+    width: 200px;
+   height: 200px;
+  }
+  50%{
+    width: 250px;
+   height: 250px;
+  }
+  60%{
+    width: 300px;
+   height: 300px;
+  }
+  70%{
+    width: 350px;
+   height: 350px
+  }
+  80%{
+    width: 400px;
+   height: 400px;
+  }
+  90%{
+    width: 450px;
+   height: 500px;
+  }
+  100%{
+    width: 500px;
+   height: 550px;
+  }
+  
+}
+
+
+
+.ErrorMessage{
+    
+  color: rgb(214, 41, 41);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+   margin-top: 10px;
+  /* margin-bottom: 4px; */
+}
+
+.ErrorMessage p{
+  margin-block-end: 0
+}
+
+
+
+.LoginForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+form{
+  display: inline;
+}
+
+
+.ForgotPassword{  
+ 
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;;
+  text-align: end;
+  
+} 
+
+.LoginButton{
+  height: 3rem;
+  background-color: #00cccc;
+  border-radius: 25px;
+  
+}
+.SignupButton{
+  height: 3rem;
+  background-color: #fff;
+  border-radius: 25px;
+  
+}
+
+.SignupButton button{
+    color: #008080;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin: 0em;
+    font-size: 15px;
+    padding: 10px 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color:#00cccc;
+    border-radius: 25px;
+    outline: none;
+}
+
+
+
+button{
+    
+    color:rgb(253, 253, 253);
+    background-color:  #00cccc;
+    box-sizing: border-box;
+    margin: 0em;
+    font-size: 15px;
+    padding: 10px 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #00cccc;
+    border-radius: 25px;
+    outline: none;
+    
+}
+button:disabled{
+
+  /* cursor: text; */
+  color:rgb(59, 55, 55);
+  border-color:  rgba(160, 152, 152, 0.767);
+  background-color: rgba(235, 226, 226, 0.767);
+  opacity: 0.5;
+}
+
+button:hover{
+  cursor: pointer;
+  
+}
+
+
+@media only screen and (max-width: 400px){
+  .LoginBox{
+
+    width: 100%;
+   
+    
+ }
+
+}
+ @media only screen and (min-width: 410px) and (max-width: 767px) {  
+  .LoginBox{
+
+    width: 100%;
+   
+    
+ }
+ 
+ } 

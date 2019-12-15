@@ -1,0 +1,45 @@
+.Crash {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+.Crash img {
+    width: 200px;
+    height: 200px;
+}
+
+.Crash p {
+    color: gray;
+    font-size: 25px;
+}
+
+
+@media only screen and (max-width: 400px){
+    .Crash img {
+        width: 100px;
+        height: 100px;
+    }
+    .Crash p {
+        color: gray;
+        font-size: 20px;
+        margin: 5px;
+    }
+  
+  }
+   @media only screen and (min-width: 410px) and (max-width: 767px) {  
+    .Crash img {
+        width: 150px;
+        height: 150px;
+    }
+    .Crash p {
+        color: gray;
+        font-size: 20px;
+        margin: 5px;
+    }
+   
+   } 
