@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import AutoLoginContainer from './containers/AutoLoginContainer/AutoLoginContainer';
 import { connect } from 'react-redux'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Loader from './components/UI/Loader/Loader'
 import ErrorBoundry from './components/UI/Error/ErrorBoundry'
 import { retry } from './utility/RetryChunk'
@@ -25,9 +25,9 @@ class App extends Component {
             <Route path='/login'   component={Login} />
             <Route path='/forgot-password'   component={ForgotPassword} />
             <Route path='/signup'   component={Signup} />
+            <Route path='/home'   component={Home} />
             {this.props.autoLogin ? <Route path='/home'  component={Home} /> : null}
             <Route path='/' exact component={AutoLoginContainer} />
-            
           </Suspense>
         </Switch>
       </ErrorBoundry>

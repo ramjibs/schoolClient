@@ -36,6 +36,7 @@ export const auth = (token) => {
                 dispatch(authSuccess(response.data.msg))
             })  
             .catch((error) => {
+                console.log(error.response)
                 dispatch(authFail(error.response.data))
             })
 

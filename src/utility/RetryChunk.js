@@ -1,6 +1,6 @@
 
 
-export function retry(fn, retriesLeft = 3, interval = 10000) {
+export function retry(fn, retriesLeft = 1, interval = 10000) {
 
     return new Promise((resolve, reject) => {
         fn()

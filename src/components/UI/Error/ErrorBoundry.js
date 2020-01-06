@@ -9,6 +9,8 @@ class ErrorBoundry extends Component {
         this.state = {
             hasError: false
         }
+
+        this.hasError = false
         
     }
 
@@ -20,21 +22,36 @@ class ErrorBoundry extends Component {
         
     }
 
-
-
+    
+    
     componentDidCatch(error, errorInfo) {
 
-
+        
         // Catch errors in any components below and re-render with error message
         this.setState({
             hasError: true
-        })
+        })  
+
+        this.hasError = true
+
+       
         // You can also log error messages to an error reporting service here
     }
 
+    componentWillUnmount () {
+        this.setState({
+            hasError: false
+        })
+        this.hasError = false
+        console.log(this.hasError)
+    }
+
+   
+    
+
     render() {
 
-        if (this.state.hasError) {
+        if (this.hasError) {
             return (
                 <div className={styles.Crash}>
                     <img src={this.img.src} alt ='App crashed'/>

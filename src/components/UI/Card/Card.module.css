@@ -1,0 +1,86 @@
+.Card {
+
+    display: block;
+    position: relative;
+    width: 350px;
+    height: 200px;
+    margin-right: 10px;
+    border: 1.5px solid rgb(216, 207, 207);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.4s ease-in-out;
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+
+}
+
+.contentMain {
+
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.Classroom {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.Classroom p {
+    font-family: cursive;
+    margin-block-end: 0em;
+   
+}
+
+.Section {
+
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(216, 207, 207);
+    box-sizing: border-box;
+    border-radius: 10px; 
+      
+}
+
+.Section p {
+    display: block;
+    text-transform: capitalize;
+    font-size: 90px;
+    font-family: cursive;
+    color:#07a1a1;
+    margin: 0;
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
+}
+
+.contentSub {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.contentSub p {
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
+    font-family: cursive;
+}
+
+.Card:hover {
+    cursor: pointer;
+    background-color: honeydew;
+}
+
+
+
+

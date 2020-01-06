@@ -150,7 +150,7 @@ class SignupContainer extends Component {
 
             <div className={styles.SignupContainer}>
                 <div className={styles.AboutSchool}>
-                    <h1 className={styles.heading}>School</h1>
+                    <h1 className={styles.heading}>School.It</h1>
                     <p className={styles.para}>A Paperless Office for your Organization</p>
                     <p className={styles.para}>
                         Thank you for Choosing us, we are determined to completely move all work releated to school to

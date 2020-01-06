@@ -1,0 +1,10 @@
+.NavigationItems {
+
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    text-transform: uppercase;
+    font-family: 'Libre Baskerville', sans-serif;
+}

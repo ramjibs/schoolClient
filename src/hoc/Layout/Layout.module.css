@@ -1,0 +1,40 @@
+.Layout {
+    width: 100%;
+}
+
+.Toolbar {
+
+    display: block;
+    position: fixed;
+    background-color:#07a1a1;
+    height: 100vh;
+    width: 250px;
+}
+.Pages{
+
+   display: block;
+    padding: 10px;
+    height: 100vh;
+    /* background-color:#2a6868; */
+    margin-left: 250px;
+    /* width: 100%; */
+
+}
+
+/* ::-webkit-scrollbar {
+    display: none;
+  } */
+
+
+  @media only screen and (max-width: 767px) {  
+    .Toolbar{
+      display: none;
+   }
+   .Pages {
+       margin-top: 30px;
+       margin-left: 0px;
+   }
+   
+   } 
+
+  
