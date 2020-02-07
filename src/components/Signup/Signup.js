@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './Signup.module.css'
 import Input from '../UI/Input/Input'
-import Spinner from '../UI/Spinner/Spinner'
-
+import Button from '../UI/Button/Button'
 const Signup = (props) => {
 
 
@@ -38,11 +37,13 @@ const Signup = (props) => {
                 <form
                     onSubmit={props.signup}>
                     {controls}
+                    <Button 
+                        buttonType = 'submit'
+                        isDisabled = {props.isSignupDisabled}
+                        loading = { props.loading }
+                        buttonName = 'signup'
+                    />
                     
-                    <div className={styles.SignupButton}>
-                        <button disabled={props.isSignupDisabled}>
-                            {props.loading ? <Spinner /> : 'signup'}</button>
-                    </div>
                     {error}
 
                 </form>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from '../UI/Spinner/Spinner'
+import Button from '../UI/Button/Button'
 import Input from '../UI/Input/Input'
 import styles from './forgotPassword.module.css'
 const ForgotPassword = props => {
@@ -62,11 +62,14 @@ const ForgotPassword = props => {
             }}
             >{props.otpMessage}</p>
             {controls}
+            <Button 
+                        buttonType = 'standard'
+                        isDisabled = {props.isChangePasswordnDisabled }
+                        clicked = {props.changePassword}
+                        loading = {props.loadingChangePass}
+                        buttonName = 'Change Password'
+                    />
 
-            <div className={styles.ForgotPasswordButton}>
-                <button disabled={props.isChangePasswordnDisabled} onClick={props.changePassword}>
-                    {props.loadingChangePass ? <Spinner /> : 'Change Password'}</button>
-            </div>
             {errorChangePass} </>
     }
 
@@ -76,10 +79,14 @@ const ForgotPassword = props => {
             <div className={styles.ForgotPasswrodForm} >
                 <form>
                     {userId}
-                    <div className={styles.ForgotPasswordButton}>
-                        <button disabled={props.otpButtondisabled} onClick={props.sendOtpClicked}>
-                            {props.loadingOtpRequest ? <Spinner /> : props.otpButtonName}</button>
-                    </div>
+                    <Button 
+                        buttonType = 'standard'
+                        isDisabled = {props.otpButtondisabled }
+                        clicked = {props.sendOtpClicked}
+                        loading = {props.loadingOtpRequest}
+                        buttonName = {props.otpButtonName}
+                    />
+                   
                     {error}
 
                     {showPassAndOtp}

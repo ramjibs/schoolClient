@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Login.module.css'
 import Input from '../UI/Input/Input'
-import Spinner from '../UI/Spinner/Spinner'
+import Button from '../UI/Button/Button'
 import { NavLink } from 'react-router-dom'
 const Login = (props) => {
 
@@ -41,10 +41,13 @@ const Login = (props) => {
                     <div className={styles.ForgotPassword}>
                         <NavLink to='/forgot-password'>Forgot Password ?</NavLink>
                     </div>
-                    <div className={styles.LoginButton}>
-                        <button disabled={props.isLoginDisabled}>
-                            {props.loading ? <Spinner /> : 'Login'}</button>
-                    </div>
+                    <Button 
+                        buttonType = 'submit'
+                        isDisabled = {props.isLoginDisabled }
+                        loading = {props.loading}
+                        buttonName = 'Login'
+                    />
+                    
                     {error}
 
                 </form>
@@ -53,11 +56,12 @@ const Login = (props) => {
                     'textAlign': 'center',
                     'color': 'darkgrey'
                 }}>Or</p>
-
-                <div className={styles.SignupButton}>
-                    <button onClick={props.signUp}>
-                         Signup</button>
-                </div>
+                <Button 
+                        buttonType = 'standard-reverse'
+                        clicked = {props.signUp}
+                        buttonName = 'signup'
+                    />
+                
             </div>
 
         </div>

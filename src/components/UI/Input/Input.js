@@ -54,6 +54,15 @@ const Input = (props) => {
                     {inputs}
                 </div>
             break;
+        case 'textarea':
+            inputElement = <div className = {dynamicStyles.join(' ')} >
+                <textarea 
+                    {...props.controlConfig}
+                    value={props.value}
+                    onChange={props.changed}
+                    />
+            </div>
+            break;
 
         default:
             inputElement = <div className={styles.InputElement}>

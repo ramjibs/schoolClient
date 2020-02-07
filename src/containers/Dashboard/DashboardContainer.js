@@ -6,9 +6,9 @@ import React, { Component } from 'react'
 
     render() {
         return (
-            <p>
+            <div>
                 DashboardContainer
-            </p>
+            </div>
         )
     }
 }

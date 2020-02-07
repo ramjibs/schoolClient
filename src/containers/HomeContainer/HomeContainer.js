@@ -73,7 +73,7 @@ class HomeContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.history.push(`${this.pathname}/classrooms`)
+        this.props.history.push(`${this.pathname}/teachers`)
     }
 
     render() {
