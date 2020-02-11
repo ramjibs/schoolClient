@@ -13,6 +13,10 @@ const addTeacher = (props) => {
                 specialControls = {props.specialControls}
                 specialControlsCount = { props.specialControlsCount}
                 specialControlsHeading = {props.specialControlsHeading}
+                addMoreControls = {props.addMoreControls}
+                deleteControl = {props.deleteControl}
+                addTeacher = {(event) => console.log('submitted')
+                }
             />
         </div>
     )

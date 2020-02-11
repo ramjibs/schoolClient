@@ -1,4 +1,4 @@
-.ButtonStandard,.ButtonStandardReverse, .ButtonSubmit, .ButtonAdd{
+.ButtonStandard,.ButtonStandardReverse, .ButtonSubmit, .ButtonAdd, .ButtonDelete{
     height: 3rem;
     background-color: #008080;
     border-radius: 25px;
@@ -51,18 +51,28 @@
 
   
   
-  .ButtonAdd{
+  .ButtonAdd, .ButtonDelete{
+    height: 2rem;
     border-radius: 0;
-    width: 30%;
+    width:30%;
   }
   
-  
+
 
   .ButtonAdd button {
     color: #008080;
     background-color: #fff;
     border-radius: 0;
     letter-spacing: 0px;
+    font-size: 12px;
+}
+.ButtonDelete button {
+    color: #e41c1cc4;
+    background-color: #fff;
+    border-radius: 0;
+    letter-spacing: 0px;
+    font-size: 12px;
+    border-color: #e41c1cc4;
 }
 
   button:disabled{
@@ -83,6 +93,10 @@
   .ButtonAdd button:hover{
     color: #fff;
     background-color: #008080;
+  }
+  .ButtonDelete button:hover{
+    color: #fff;
+    background-color: #e41c1cc4;
   }
   
 

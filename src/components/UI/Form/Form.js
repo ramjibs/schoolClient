@@ -48,11 +48,19 @@ const Form = (props) => {
             <div key={index + props.specialControlsHeading[index]}>
                 <div >
                     <label>{props.specialControlsHeading[index]}</label> <br /> <br />
-                     
+
                     {props.controls.forEach(elements => {
                         if (elements.id === props.specialControls[index]) {
                             for (let element in elements.control) {
-                                count =  <div key = {element + elements.id }><label>{parseInt(element) + 1}.</label> <br /></div>
+                                count = <div key={element + elements.id} className={styles.SpecialControlCount}>
+                                    <label>{parseInt(element) + 1}.</label>
+                                    {parseInt(element + 1) > 1 ? <Button
+                                        buttonType='delete'
+                                        clicked={(event) => props.deleteControl(event, props.specialControls[index], parseInt(element))}
+                                        buttonName={'Delete ' + props.specialControlsHeading[index]}
+                                    /> : null}
+                                    
+                                </div>
                                 inputs.push(count)
                                 let objects = elements.control[element]
                                 for (let object in objects) {
@@ -67,7 +75,7 @@ const Form = (props) => {
                                         touched={objects[object].touched}
                                         changed={(event, i) => props.changed(event, objects[object].id, i)}
                                     />
-                                    
+
                                     inputs.push(input)
                                 }
 
@@ -77,7 +85,7 @@ const Form = (props) => {
                         }
 
                     })}
-                    
+
                     {inputs}
 
 
@@ -85,10 +93,10 @@ const Form = (props) => {
                 </div>
                 <Button
                     buttonType='add'
-                    clicked={props.changePassword}
-                    loading={props.loadingChangePass}
+                    clicked={(event) => props.addMoreControls(event, props.specialControls[index])}
                     buttonName={'Add ' + props.specialControlsHeading[index]}
                 />
+
             </div>
 
         )

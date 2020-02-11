@@ -15,7 +15,7 @@ const Input = (props) => {
         if(otpRefs[ref].current.nextSibling && otpRefs[ref].current.value.trim(' ').length === 1)  {
             otpRefs[ref].current.nextSibling.focus()
         }
-    }
+    }   
 
     if (props.touched && !props.valid) {
         dynamicStyles.push(styles.InValidInputElement)

@@ -34,6 +34,12 @@ const Button = (props) => {
                     {props.loading ? <Spinner /> : props.buttonName}</button>
             </div>
             break;
+        case 'delete':
+            ButtonElement = <div className={styles.ButtonDelete}>
+                <button disabled={props.isDisabled} onClick={props.clicked}>
+                    {props.loading ? <Spinner /> : props.buttonName}</button>
+            </div>
+            break;
 
         default:
             ButtonElement = <div className={styles.ButtonStandard}>

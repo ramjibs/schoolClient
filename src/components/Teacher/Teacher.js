@@ -13,6 +13,8 @@ const teacher = (props) => {
                 specialControlsCount = { props.specialControlsCount}
                 specialControlsHeading = {props.specialControlsHeading}
                 formTitle = 'Enroll New Teacher'
+                addMoreControls = {props.addMoreControls}
+                deleteControl = {props.deleteControl}
             />
         </div>
     )
