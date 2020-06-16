@@ -1,4 +1,5 @@
 import * as actionTypes from './index'
+import * as api from '../../api'
 import axios from '../../axios-school'
 
 const authStart = () => {
@@ -7,12 +8,10 @@ const authStart = () => {
     }
 }
 
-export const authSuccess = (msg) => {
+export const authSuccess = (data) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        payload: {
-            msg: msg
-        }
+        payload: data
     }
 }
 
@@ -30,14 +29,14 @@ export const auth = (token) => {
     return dispatch => {
         dispatch(authStart())
         axios.defaults.headers.common['Authorization'] = token
-        axios.get('/checktoken')
+        axios.get(api.CHECKTOKEN_VALIDITY)
             .then(response => {
                 dispatch(actionTypes.loginSuccess(token))
-                dispatch(authSuccess(response.data.msg))
+                dispatch(authSuccess(response.data))
             })  
             .catch((error) => {
-                console.log(error.response)
-                dispatch(authFail(error.response.data))
+                error.response ? dispatch(authFail(error.response.data)) : dispatch(authFail(error.message))
+                
             })
 
     }

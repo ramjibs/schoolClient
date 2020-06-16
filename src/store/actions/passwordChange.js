@@ -1,6 +1,6 @@
 import * as actionTypes from './index'
 import axios from '../../axios-school'
-
+import * as api from '../../api'
 
 const forgot_Password_Start = ()=> {
     return {
@@ -45,7 +45,7 @@ export const forgot_Password = (userid)=> {
             throw error
         }
         try{
-            const response = await axios.post('users/forgotPassword', data)
+            const response = await axios.post(api.USER_FORGOT_PASSWORD, data)
             return onSuccess(response)
         }
         catch (error) {
@@ -85,12 +85,11 @@ export const change_Password = (id, password, otp) => {
             password: password,
             otp: otp
         }
-        axios.post('users/changePassword', data)
+        axios.post(api.USER_CHANGE_PASSWORD, data)
             .then(response => {
                 localStorage.setItem('token', response.data.token)
                 dispatch(actionTypes.loginSuccess(response.data.token))
-                let msg = true
-                dispatch(actionTypes.authSuccess(msg))
+                dispatch(actionTypes.authSuccess(response.data.user))
                 dispatch(change_Password_Success())
             })
             .catch(error => {

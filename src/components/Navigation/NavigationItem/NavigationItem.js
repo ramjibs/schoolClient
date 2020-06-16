@@ -10,9 +10,10 @@ export const NavigationItem = (props) => {
     return (
         <li className={styles.NavigationItem}>
             <NavLink
+            // to = {`${url}/${props.link}`}
             to ={url+'/' +props.link}
             activeClassName = {styles.active}
-            exact
+            //exact
             >{props.navigationItem}</NavLink>
         </li>
     )

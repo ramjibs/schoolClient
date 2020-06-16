@@ -22,10 +22,10 @@ class App extends Component {
         <Switch>
           <Suspense fallback={<Loader />}>
            
-            <Route path='/login'   component={Login} />
-            <Route path='/forgot-password'   component={ForgotPassword} />
-            <Route path='/signup'   component={Signup} />
-            <Route path='/home'   component={Home} />
+            <Route exact path='/login'   component={Login} />
+            <Route exact path='/forgot-password'   component={ForgotPassword} />
+            <Route exact  path='/signup'   component={Signup} />
+            {/* <Route   path='/home'   component={Home} /> */}
             {this.props.autoLogin ? <Route path='/home'  component={Home} /> : null}
             <Route path='/' exact component={AutoLoginContainer} />
           </Suspense>

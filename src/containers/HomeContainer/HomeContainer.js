@@ -5,6 +5,8 @@ import ErrorBoundry from '../../components/UI/Error/ErrorBoundry'
 import Loader from '../../components/UI/Loader/Loader'
 import DashboardContainer from '../Dashboard/DashboardContainer'
 import { retry } from '../../utility/RetryChunk'
+import * as actionCreators from '../../store/actions'
+import { connect } from 'react-redux'
 const TeachersContainer = lazy(() => retry(() => import('../Teachers/TeachersContainer')))
 const StudentsContainer = lazy(() => retry(() => import('../Students/StudentsContainer')))
 const ClassroomsContainer = lazy(() => retry(() => import('../Classrooms/ClassroomsContainer')))
@@ -17,51 +19,56 @@ const LogoutContainer = lazy(() => retry(() => import('../Logout/LogoutContainer
 
 class HomeContainer extends Component {
 
+
+
     constructor(props) {
 
         super(props)
-        this.pathname = this.props.history.location.pathname
+        this.pathname = this.props.match.path
+        this.url = this.props.match.url
 
         this.routes = (
 
             <Suspense fallback={<Loader />} >
                 <Switch>
-                    <Route path={`${this.pathname}/dashboard`} exact render={() =>
+                    <Route path={`${this.pathname}/dashboard`} render={(routeProps) =>
                         <ErrorBoundry key={'dashboard'}>
-                            <DashboardContainer />
+                            <DashboardContainer {...routeProps} />
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/teachers`} exact render={() =>
-                        <ErrorBoundry key={'teachers'}>
-                            <TeachersContainer />
+                    <Route path={`${this.pathname}/teachers`} render={(routeProps) =>
+                        <ErrorBoundry key ={'teacher'}>
+                            <TeachersContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/students`} exact render={() =>
+                    <Route path={`${this.pathname}/students`} render={(routeProps) =>
                         <ErrorBoundry key={'students'}>
-                            <StudentsContainer />
+                            <StudentsContainer {...routeProps} />
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/classrooms`} exact render={() =>
+                    <Route path={`${this.pathname}/classrooms`} render={(routeProps) =>
                         <ErrorBoundry key={'classrooms'}>
-                            <ClassroomsContainer />
+                            <ClassroomsContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/timetable`} exact render={() =>
+                    <Route path={`${this.pathname}/timetable`} render={(routeProps) =>
                         <ErrorBoundry key={'timetable'}>
-                            <TimetableContainer />
+                            <TimetableContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/exams`} exact render={() =>
+                    <Route path={`${this.pathname}/exams`} render={(routeProps) =>
                         <ErrorBoundry key={'exams'}>
-                            <ExamsContainer />
+                            <ExamsContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/reports`} exact render={() =>
+                    <Route path={`${this.pathname}/reports`} render={(routeProps) =>
                         <ErrorBoundry key={'reports'}>
-                            <ReportsContainer />
+                            <ReportsContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/settings`} exact render={() =>
+                    <Route path={`${this.pathname}/settings`} render={(routeProps) =>
                         <ErrorBoundry key={'settings'}>
-                            <SettingsContainer />
+                            <SettingsContainer {...routeProps}/>
                         </ErrorBoundry>} />
-                    <Route path={`${this.pathname}/logout`} exact render={() =>
+                    <Route path={`${this.pathname}/logout`} render={(routeProps) =>
                         <ErrorBoundry key={'logout'}>
-                            <LogoutContainer />
+                            <LogoutContainer {...routeProps}/>
                         </ErrorBoundry>} />
+
+
                 </Switch>
             </Suspense>
 
@@ -73,7 +80,14 @@ class HomeContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.history.push(`${this.pathname}/teachers`)
+
+        this.props.history.push(`${this.url}/teachers`)
+        this.props.onRequestAllSubjects()
+        this.props.onRequestAllStates()
+        this.props.onRequestAllCategories()
+        
+
+
     }
 
     render() {
@@ -90,4 +104,21 @@ class HomeContainer extends Component {
 }
 
 
-export default HomeContainer
+// const MapStateToProps = state => {
+//     return {
+//         subjects: state.resource.subjects,
+//         states: state.resource.states
+//     }
+// }
+
+const MapDispatchToProps = dispatch => {
+    return {
+        onRequestAllSubjects: () => dispatch(actionCreators.getAllSubjects()),
+        onRequestAllStates: () => dispatch(actionCreators.getAllStates()),
+        onRequestAllCategories: () => dispatch(actionCreators.getAllCategory())
+
+    }
+}
+
+export default connect(null, MapDispatchToProps)(HomeContainer)
+

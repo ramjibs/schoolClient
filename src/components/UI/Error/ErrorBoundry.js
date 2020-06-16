@@ -10,7 +10,7 @@ class ErrorBoundry extends Component {
             hasError: false
         }
 
-        this.hasError = false
+        // this.hasError = false
         
     }
 
@@ -32,7 +32,7 @@ class ErrorBoundry extends Component {
             hasError: true
         })  
 
-        this.hasError = true
+        // this.hasError = true
 
        
         // You can also log error messages to an error reporting service here
@@ -42,8 +42,8 @@ class ErrorBoundry extends Component {
         this.setState({
             hasError: false
         })
-        this.hasError = false
-        console.log(this.hasError)
+        // this.hasError = false
+       
     }
 
    
@@ -51,7 +51,7 @@ class ErrorBoundry extends Component {
 
     render() {
 
-        if (this.hasError) {
+        if (this.state.hasError) {
             return (
                 <div className={styles.Crash}>
                     <img src={this.img.src} alt ='App crashed'/>

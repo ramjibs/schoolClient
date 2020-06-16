@@ -16,7 +16,9 @@ const rootReducer = combineReducers({
     login: reducers.reducerLogin,
     auth: reducers.reducerAuth,
     forgotPassword: reducers.reducerForgotPassword,
-    signup: reducers.reducerSignup
+    signup: reducers.reducerSignup,
+    teacher: reducers.reducerTeacher,
+    resource: reducers.reducerResource,
 })
 
 
@@ -35,3 +37,6 @@ ReactDOM.render(application, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+

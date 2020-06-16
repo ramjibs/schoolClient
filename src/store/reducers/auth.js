@@ -3,6 +3,7 @@ import * as actionsTypes from '../actions'
 
 const initialState = {
     autoLogin: false,
+    user: null,
     error: null,
     loading: true
 }
@@ -20,7 +21,8 @@ export const reducerAuth = (state = initialState, action) =>{
             return{
                 ...state,
                 loading:false,
-                autoLogin: action.payload.msg,
+                user: action.payload,
+                autoLogin: true,
                 error: null
             }
         case actionsTypes.AUTH_FAIL:

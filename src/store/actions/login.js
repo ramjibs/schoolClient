@@ -1,4 +1,5 @@
 import * as actionTypes from './index'
+import * as api from '../../api'
 import axios from '../../axios-school'
 
 const loginStart = () => {
@@ -35,12 +36,11 @@ export const login = (userid, password) => {
             id: userid,
             password: password
         }
-        axios.post('users/login', data)
+        axios.post(api.USER_LOGIN, data)
             .then(response => {
                 localStorage.setItem('token', response.data.token)
                 dispatch(loginSuccess(response.data.token))
-                let msg = true
-                dispatch(actionTypes.authSuccess(msg))
+                dispatch(actionTypes.authSuccess(response.data.user))
             })
             .catch(error => {
                 // console.log(error.response.data)

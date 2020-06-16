@@ -57,9 +57,11 @@ class LoginContainer extends Component {
     }
 
     componentDidUpdate() {
-        console.log('inside login')
-        if(this.props.autoLogin && this.props.token){
+        
+        if(this.props.autoLogin && this.props.token && this.props.user){
+            
             this.props.history.replace('/home')
+            
         }
       
     }
@@ -127,6 +129,7 @@ class LoginContainer extends Component {
                     signUp={this.signUpHandler}
                      />
             </div>
+           
 
 
         )
@@ -138,7 +141,8 @@ const mapStateToProps = state => {
         loading: state.login.loading,
         error: state.login.error,
         token: state.login.token,
-        autoLogin: state.auth.autoLogin
+        autoLogin: state.auth.autoLogin,
+        user: state.auth.user
     }
 }
 
@@ -148,7 +152,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (userid, password) => dispatch(actionCreators.login(userid, password)),
-
     }
 }
 

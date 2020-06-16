@@ -1,0 +1,172 @@
+.SelectBoxContainer{
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+    overflow: hidden;
+    
+
+}
+
+.SelectDisplayBox{
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.SelectBox{
+
+    box-shadow: none;
+    box-sizing: border-box;
+    color: rgb(112, 108, 100);
+    height: 3rem;
+    font-size: 1rem !important;
+    background: rgb(245, 244, 242);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(229, 227, 221);
+    border-image: initial;
+    outline: none;
+    padding: 0.75rem 1rem;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-appearance: textfield;
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right-width: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.DropDownBox{
+
+    box-shadow: none;
+    box-sizing: border-box;
+    color: rgb(112, 108, 100);
+    height: 3rem;
+    font-size: 1rem !important;
+    background: rgb(245, 244, 242);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(229, 227, 221);
+    border-image: initial;
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border-left-width: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+
+}
+
+.SelectBoxFocused{
+    background-color: white;
+    border-color: rgb(31, 28, 28);
+    color: rgb(36, 30, 18);
+}
+
+.DropDownBoxFocused{
+    background-color: white;
+    border-color: rgb(31, 28, 28);
+    color: rgb(36, 30, 18);
+}
+
+.InValidSelectBox{ 
+    background-color: rgb(250, 233, 234);
+    border-color: rgb(214, 41, 41);
+  }
+
+.InValidDropDownBox{
+    background-color: rgb(250, 233, 234);
+    border-color: rgb(214, 41, 41);
+}
+  
+  
+.InValidSelectBoxFocused{ 
+    background-color: white;
+    border-color: rgb(214, 41, 41);
+}
+
+.InValidDropDownBoxFocused{ 
+    background-color: white;
+    border-color: rgb(214, 41, 41);
+}
+
+
+
+.SelectBoxUp{
+
+    /* right: 1.2rem;
+    position: absolute; */
+    width: 0;
+    height: 0;
+    border-left: 0.6rem solid transparent;
+    border-right: 0.6rem solid transparent;
+    border-bottom: 1.2rem solid rgb(88, 85, 85);
+    padding: 0;
+    margin: 0;
+}
+
+.SelectBoxDown{
+    
+    /* right: 1.2rem;
+    position: absolute; */
+    width: 0;
+    height: 0;
+    border-left: 0.6rem solid transparent;
+    border-right: 0.6rem solid transparent;
+    border-top: 1.2rem solid  rgb(88, 85, 85);
+    padding: 0;
+    margin: 0;
+    
+}
+
+.DropDown{
+    
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid grey;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 12rem;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    position: relative;
+    cursor: pointer;
+}
+
+.ItemList{
+
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    padding-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+
+    
+}
+
+.ItemList:hover{
+    /* background-color: #ddd; */
+    /* height: 3.4rem; */
+    padding: 0;
+    
+}
+
+.selected{
+    background-color: #ddd;
+
+}
+
+

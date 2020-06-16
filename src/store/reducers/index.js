@@ -13,3 +13,11 @@ export {
 export {
     reducerSignup
 } from './signup'
+
+export {
+    reducerTeacher
+} from './teacher'
+
+export {
+    reducerResource
+} from './resource'

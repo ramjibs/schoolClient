@@ -28,6 +28,13 @@ const Button = (props) => {
                     {props.loading ? <Spinner /> : props.buttonName}</button>
             </div>
             break;
+        case 'cancel':
+
+            ButtonElement = <div className={styles.ButtonCancel}>
+                <button disabled={props.isDisabled} >
+                    {props.loading ? <Spinner /> : props.buttonName}</button>
+            </div>
+            break;
         case 'add':
             ButtonElement = <div className={styles.ButtonAdd}>
                 <button disabled={props.isDisabled} onClick={props.clicked}>

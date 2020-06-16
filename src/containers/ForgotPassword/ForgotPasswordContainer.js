@@ -107,7 +107,8 @@ class ForgotPasswordContainer extends Component {
 
     componentDidUpdate() {
 
-        if (this.props.autoLogin && this.props.token) {
+        if (this.props.autoLogin && this.props.token && this.props.user) {
+            
             this.props.history.replace('/home')
         }
     }
@@ -286,13 +287,14 @@ const mapStateToProps = state => {
         email: state.forgotPassword.email,
         token: state.login.token,
         autoLogin: state.auth.autoLogin,
+        user: state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onForgotPassword: (userId) => dispatch(actionCreators.forgot_Password(userId)),
-        onChangePassword: (userId, password, otp) => dispatch(actionCreators.change_Password(userId, password, otp))
+        onChangePassword: (userId, password, otp) => dispatch(actionCreators.change_Password(userId, password, otp)),
     }
 }
 

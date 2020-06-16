@@ -1,4 +1,5 @@
 import * as actionTypes from './index'
+import * as api from '../../api'
 import axios from '../../axios-school'
 
 
@@ -32,7 +33,7 @@ const signupFail = (error) => {
 export const signup = (signup) => {
     return dispatch => {
         dispatch(signupStart())
-        axios.post('registration/registerSchool', signup)
+        axios.post(api.SIGNUP, signup)
             .then(response => {
             
                 dispatch(signupSuccess(response.data))

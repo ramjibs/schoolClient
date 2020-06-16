@@ -5,10 +5,12 @@
     flex-direction: column;   
     margin-bottom: 20px;
     
+    
   } 
 
   label{
-    color: rgb(112, 108, 100);
+    color: rgb(31, 28, 28);
+    /* color: rgb(112, 108, 100); */
     position: relative;
     cursor: text;
   
@@ -71,6 +73,16 @@
     text-align: center;
     font-size: x-large;
   }
+
+  .RadioElement{
+    display: flex;
+    flex-direction: row;
+    margin-top:10px;
+  }
+  .RadioElement div{
+   
+    margin: 8px;
+  }
   
   .InputElement{
     display: flex;
@@ -82,7 +94,7 @@
 
   
 
-  .InputElement input, textarea{
+  .InputElement input, textarea, select{
   
     box-shadow: none;
     box-sizing: border-box;
@@ -103,6 +115,34 @@
     font-family: Arial, Helvetica, sans-serif;
     
    
+}
+
+
+
+.InputElement select option[disabled]:first-child {
+  display: none;
+  
+}
+
+.InputElement select option {
+  color: black;
+}
+ .InputElement select option:first-child {
+  color: grey;
+}
+
+.InputElement datalist{
+  width: 100%;
+}
+
+.InputElement input[type="date" i] {
+  color: rgb(112, 108, 100);
+  
+}
+
+.InputElement input[type="date" i]:focus {
+  color: rgb(36, 30, 18);
+  
 }
 
 

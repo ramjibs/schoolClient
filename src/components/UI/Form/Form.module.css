@@ -8,5 +8,17 @@
     margin-bottom: 5px;
 }
 
+.FormSubmission{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.FormSubmission div{
+    width: 48%;
+}
+
+
+
 
 

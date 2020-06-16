@@ -1,7 +1,7 @@
-.ButtonStandard,.ButtonStandardReverse, .ButtonSubmit, .ButtonAdd, .ButtonDelete{
+.ButtonStandard,.ButtonStandardReverse, .ButtonSubmit, .ButtonAdd, .ButtonDelete, .ButtonCancel{
     height: 3rem;
     background-color: #008080;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     margin-bottom: 10px;
     
   }
@@ -22,7 +22,7 @@
     border-width: 1px;
     border-style: solid;
     border-color: #008080;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     outline: none;
     
 }
@@ -45,7 +45,7 @@
       border-width: 1px;
       border-style: solid;
       border-color:#008080;
-      border-radius: 25px;
+      /* border-radius: 25px; */
       outline: none;
   }
 
@@ -66,6 +66,13 @@
     letter-spacing: 0px;
     font-size: 12px;
 }
+
+.ButtonCancel button{
+  color: #fff;
+  background-color: #e41c1cc4;
+}
+
+
 .ButtonDelete button {
     color: #e41c1cc4;
     background-color: #fff;

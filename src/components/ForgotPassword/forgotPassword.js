@@ -19,6 +19,9 @@ const ForgotPassword = props => {
                 changed={(event, i) => props.changed(event, object.id, i)}
                 otpLength={object.control.otpLength} />
         }
+        else{
+            return null
+        }
 
     })
 

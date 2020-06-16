@@ -5,11 +5,11 @@ import * as actionCreators from '../../store/actions'
 class AutoLoginContainer extends Component {
 
     componentDidUpdate() {
-        if (!this.props.autoLogin & this.props.error === 'Unauthorized' & !this.props.loading) {
+        if (!this.props.autoLogin & (this.props.error === 'Network Error' || this.props.error === 'Unauthorized' ) & !this.props.loading) {
           
-            this.props.history.push('/login')
+            this.props.history.replace('/login')
         }
-        if (this.props.autoLogin && this.props.token && !this.props.loading) {
+        if (this.props.autoLogin && this.props.token && !this.props.loading && this.props.user) {
             
             this.props.history.replace('/home')
         }
@@ -37,7 +37,8 @@ const mapStateToProps = state => {
         error: state.auth.error,
         token: state.login.token,
         autoLogin: state.auth.autoLogin,
-        loading: state.auth.loading
+        loading: state.auth.loading,
+        user: state.auth.user
     }
 }
 

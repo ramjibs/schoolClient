@@ -2,7 +2,10 @@ import React from 'react'
 import styles from './AddTeacher.module.css'
 import Form from '../../UI/Form/Form'
 
+
 const addTeacher = (props) => {
+
+    
     
     return (
         <div className={styles.AddTeacher}>
@@ -13,13 +16,18 @@ const addTeacher = (props) => {
                 specialControls = {props.specialControls}
                 specialControlsCount = { props.specialControlsCount}
                 specialControlsHeading = {props.specialControlsHeading}
+                buttonDisabledStatus={props.buttonDisabledStatus}
                 addMoreControls = {props.addMoreControls}
                 deleteControl = {props.deleteControl}
-                addTeacher = {(event) => console.log('submitted')
-                }
+                formSubmitButtonName = 'Teacher'
+                submitForm = {props.addTeacherFormSubmitted}
+                newEntryFromUser = {props.newEntryFromUser}
+                isFormSubmitDisabled ={props.isAddTeacherButtonDisabled}
+                
             />
         </div>
     )
 }
+
 
 export default addTeacher
