@@ -180,7 +180,7 @@ const Input = (props) => {
     return (
         <div className={styles.FormField}>
             {props.notRequiredLabel ? null :
-                (<label className={props.animateLabel ? styles.LabelAnimie : ''}>{props.label}</label>
+                (<label htmlFor ={props.controlConfig.id}className={props.animateLabel ? styles.LabelAnimie : ''}>{props.label}</label>
                 )}
 
             {inputElement}

@@ -23,7 +23,7 @@ const addTeacher = (props) => {
                 submitForm = {props.addTeacherFormSubmitted}
                 newEntryFromUser = {props.newEntryFromUser}
                 isFormSubmitDisabled ={props.isAddTeacherButtonDisabled}
-                
+                loading = {props.loading}
             />
         </div>
     )

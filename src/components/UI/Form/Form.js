@@ -58,9 +58,11 @@ const Form = (props) => {
         let inputs = [];
         let count
         let controlDesign = (
+            <fieldset>
+                <legend>{props.specialControlsHeading[index]}</legend>
             <div key={index + props.specialControlsHeading[index]}>
                 <div >
-                    <label>{props.specialControlsHeading[index]}</label> <br /> <br />
+                    {/* <label>{props.specialControlsHeading[index]}</label> <br /> <br /> */}
 
                     {props.controls.forEach(elements => {
                         if (elements.id === props.specialControls[index]) {
@@ -117,6 +119,7 @@ const Form = (props) => {
 
 
             </div>
+            </fieldset>
 
         )
         specialControls.push(controlDesign)

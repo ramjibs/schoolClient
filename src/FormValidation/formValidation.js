@@ -5,14 +5,14 @@ function checkValidityHandler(validationRule, value) {
     let isValid = true
     let isToValid = true
     let errorMessage = ''
-    let toErrorMessage= ''
+    let toErrorMessage = ''
     let date = null
     if (validationRule.required) {
         isValid = value.trim(' ') !== '' && isValid
         errorMessage = !isValid ? 'Please enter a valid value' : ''
 
     }
-    if(validationRule.requiredArray){
+    if (validationRule.requiredArray) {
         isValid = value.length > 0 && isValid
         errorMessage = !isValid ? 'Please Select Atleast one value' : ''
     }
@@ -25,7 +25,7 @@ function checkValidityHandler(validationRule, value) {
         errorMessage = !isValid ? 'Enter a Valid Number' : ''
     }
     if (validationRule.matchEmail) {
-        isValid = regexEmail.test(value) 
+        isValid = regexEmail.test(value)
         errorMessage = !isValid ? 'Enter a Valid Email' : ''
     }
     if (validationRule.matchValue) {
@@ -62,56 +62,56 @@ function checkValidityHandler(validationRule, value) {
         let toComapre = null
         for (let index = 0; index < timelineLength; index++) {
             perTimeline = timelineArr[index];
-            toComapre =  date.getTime() 
+            toComapre = date.getTime()
 
-            if(index !== validationRule.index){
-                if (perTimeline.startPeriod !== null && perTimeline.endPeriod!== null && toComapre >= perTimeline.startPeriod && toComapre <= perTimeline.endPeriod) {
+            if (index !== validationRule.index) {
+                if (perTimeline.startPeriod !== null && perTimeline.endPeriod !== null && toComapre >= perTimeline.startPeriod && toComapre <= perTimeline.endPeriod) {
                     isValid = false
                     errorMessage = 'Time Period should not clash with other time period.'
-                   
+
                 }
-                if ( validationRule.by === 'from' && perTimeline.startPeriod !== null && perTimeline.endPeriod!== null && timelineArr[validationRule.index].endPeriod >= perTimeline.startPeriod && timelineArr[validationRule.index].endPeriod  <= perTimeline.endPeriod) {
+                if (validationRule.by === 'from' && perTimeline.startPeriod !== null && perTimeline.endPeriod !== null && timelineArr[validationRule.index].endPeriod >= perTimeline.startPeriod && timelineArr[validationRule.index].endPeriod <= perTimeline.endPeriod) {
                     isToValid = false
                     toErrorMessage = 'Time Period should not clash with other time period.'
-                   
+
                 }
             }
-            
-            
 
-            if(index === validationRule.index){
-                if(perTimeline.startPeriod !== null && perTimeline.endPeriod === null){
-                    
+
+
+            if (index === validationRule.index) {
+                if (perTimeline.startPeriod !== null && perTimeline.endPeriod === null) {
+
                 }
                 //when From is greater than To regardless of change in From and To ErrorMessage should be displayed in To
-                if(perTimeline.startPeriod !== null &&  perTimeline.endPeriod !== null){
-                    
-                    if(validationRule.by === 'from' &&  perTimeline.endPeriod <=  toComapre){
+                if (perTimeline.startPeriod !== null && perTimeline.endPeriod !== null) {
+
+                    if (validationRule.by === 'from' && perTimeline.endPeriod <= toComapre) {
                         isToValid = false
                         toErrorMessage = 'To should be greater than From.'
-                        
-                        
+
+
                     }
-                    if(validationRule.by ==='to' && toComapre <= perTimeline.startPeriod){
+                    if (validationRule.by === 'to' && toComapre <= perTimeline.startPeriod) {
                         isValid = false
                         errorMessage = 'To should be greater than From.'
                     }
 
-                    if (validationRule.by === 'from' && ( perTimeline.endPeriod >= validationRule.range.lesserThan ||  perTimeline.endPeriod <= validationRule.range.greaterThan) ) {
+                    if (validationRule.by === 'from' && (perTimeline.endPeriod >= validationRule.range.lesserThan || perTimeline.endPeriod <= validationRule.range.greaterThan)) {
                         isToValid = false
                         toErrorMessage = 'Time period should be between DOB to retire age(65)'
                     }
-                   
-                    
+
+
                 }
                 //Message of Error should be displayed in To and should be cleard when From is Valid
-                if(perTimeline.startPeriod == null){
+                if (perTimeline.startPeriod == null) {
                     isValid = false
                     errorMessage = 'Please enter From value first'
                     break;
                 }
             }
-           
+
 
         }
         if (date.getTime() > validationRule.range.lesserThan || date.getTime() < validationRule.range.greaterThan) {
@@ -125,31 +125,45 @@ function checkValidityHandler(validationRule, value) {
         errorMessage = 'Please enter Valid Age.'
     }
 
-    if(validationRule.currentlyWorking){
+    if (validationRule.currentlyWorking) {
 
-       
 
-            let timelineArr = validationRule.rules.timeline
-            let toCompare = timelineArr[validationRule.index].startPeriod
-            for(let index = 0; index < timelineArr.length; index++){
-                
-                let perTimeline = timelineArr[index];
 
-                if(index !== validationRule.index){
-                    if(perTimeline.endPeriod !== null && perTimeline.endPeriod !== undefined && perTimeline.endPeriod !== ''){
-                        if(toCompare < perTimeline.endPeriod){
-                            isValid = false
-                            errorMessage = 'From should be latest than other value.'
+        let timelineArr = validationRule.rules.timeline
+        if (timelineArr != null && timelineArr.length > 0) {
+            if (timelineArr[validationRule.index].startPeriod !== null && timelineArr[validationRule.index].startPeriod !== undefined) {
+                let toCompare = timelineArr[validationRule.index].startPeriod
+                for (let index = 0; index < timelineArr.length; index++) {
+
+                    let perTimeline = timelineArr[index];
+
+                    if (index !== validationRule.index) {
+                        if (perTimeline.endPeriod !== null && perTimeline.endPeriod !== undefined && perTimeline.endPeriod !== '') {
+                            if (toCompare < perTimeline.endPeriod) {
+                                isValid = false
+                                errorMessage = 'From should be latest than other value.'
+                            }
                         }
                     }
                 }
             }
+            else {
+                isValid = false
+                errorMessage = 'Please enter value for From.'
+            }
 
-            isToValid = value ? true : false
-            toErrorMessage = value ? '' : 'Please enter value for To'
-            isValid = value ? isValid : true
-            errorMessage = value ? errorMessage : ''
-        
+        }
+        else {
+            isValid = false
+            errorMessage = 'Please enter value for From.'
+        }
+
+
+        isToValid = value ? true : false
+        toErrorMessage = value ? '' : 'Please enter value for To'
+        isValid = value ? isValid : true
+        errorMessage = value ? errorMessage : ''
+
 
     }
 
@@ -158,7 +172,7 @@ function checkValidityHandler(validationRule, value) {
         errorMessage,
         isToValid,
         toErrorMessage
-        }
     }
+}
 
 export default checkValidityHandler

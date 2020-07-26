@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 import axios from '../../../axios-school'
 import * as api from '../../../api'
 
-class AddTeacherContainer extends React.Component{
+class AddTeacherContainer extends React.Component {
 
-    constructor(props){
+    constructor(props) {
 
         super(props)
         this.state = {
@@ -130,14 +130,14 @@ class AddTeacherContainer extends React.Component{
                     },
 
                 },
-                state:{
+                state: {
                     controlType: 'select',
-                    controlConfig:{
+                    controlConfig: {
                         type: 'text',
                         name: 'state',
                         id: 'state',
-                        default:'default',
-                        defaultValue:'Please select state',
+                        default: 'default',
+                        defaultValue: 'Please select state',
                         disabled: false,
                     },
                     options: null,
@@ -146,18 +146,18 @@ class AddTeacherContainer extends React.Component{
                     valid: false,
                     errorMessage: '',
                     touched: false,
-                    validation:{
+                    validation: {
                         required: true
                     }
                 },
-                district:{
+                district: {
                     controlType: 'select',
-                    controlConfig:{
+                    controlConfig: {
                         type: 'text',
                         name: 'district',
                         id: 'district',
-                        default:'default',
-                        defaultValue:'Please select district',
+                        default: 'default',
+                        defaultValue: 'Please select district',
                         disabled: true,
                     },
                     options: null,
@@ -166,12 +166,12 @@ class AddTeacherContainer extends React.Component{
                     valid: false,
                     errorMessage: '',
                     touched: false,
-                    validation:{
+                    validation: {
                         required: true
                     }
 
                 },
-                
+
                 address: {
                     controlType: 'textarea',
                     controlConfig: {
@@ -193,7 +193,7 @@ class AddTeacherContainer extends React.Component{
                     },
 
                 },
-                
+
                 pancard: {
                     controlType: 'input',
                     controlConfig: {
@@ -258,7 +258,7 @@ class AddTeacherContainer extends React.Component{
                     },
 
                 },
-                contactDetails:[
+                contactDetails: [
                     {
                         contactNumber: {
                             controlType: 'input',
@@ -278,9 +278,9 @@ class AddTeacherContainer extends React.Component{
                             validation: {
                                 required: true,
                                 numberOnly: true
-        
+
                             }
-        
+
                         }
                     }
                 ],
@@ -548,9 +548,9 @@ class AddTeacherContainer extends React.Component{
 
 
             },
-            specialControls: ['contactDetails','qualification', 'experience'],
-            specialControlsHeading: ['Contact Details','Teacher Qualification', 'Teacher Experience'],
-            controlWithCustomEvent:['subjects', 'teachingLevel'],
+            specialControls: ['contactDetails', 'qualification', 'experience'],
+            specialControlsHeading: ['Contact Details', 'Teacher Qualification', 'Teacher Experience'],
+            controlWithCustomEvent: ['subjects', 'teachingLevel'],
             qualificationTimeline: [
                 {
                     startPeriod: null,
@@ -587,7 +587,7 @@ class AddTeacherContainer extends React.Component{
 
     }
 
-    
+
     additionalControl = (uniqueId, controlName) => {
         let qualification = {
             title: {
@@ -818,7 +818,7 @@ class AddTeacherContainer extends React.Component{
                     id: 'currentlyWorking',
                     value: 'workingStatus',
                     disabled: false,
-                    checked:false,
+                    checked: false,
                 },
                 notRequiredLabel: true,
                 label: 'Currently Working',
@@ -888,11 +888,11 @@ class AddTeacherContainer extends React.Component{
                 return experience;
 
             case 'contactDetails':
-                for(const key in contactDetails){
+                for (const key in contactDetails) {
                     contactDetails[key].controlConfig.id = contactDetails[key].controlConfig.id + uniqueId
                 }
                 return contactDetails;
-                
+
             default:
                 break;
         }
@@ -929,20 +929,30 @@ class AddTeacherContainer extends React.Component{
         }
         let numberOfControlPresent = control.length
         let additionalControl = this.additionalControl(numberOfControlPresent, controlName)
+        if (controlName === 'experience') {
+            for (let i = 0; i < numberOfControlPresent; i++) {
+                let expObj = control[i]
+                let currWorkingObj = expObj['currentlyWorking']
+                if (currWorkingObj.value) {
+                    additionalControl['currentlyWorking'].controlConfig.disabled = true
+                    break
+                }
+            }
+        }
         control.push(additionalControl)
         updatedControls[controlName] = control
-        if(controlName === 'contactDetails'){
+        if (controlName === 'contactDetails') {
             this.setState({
                 controls: updatedControls
             })
         }
-        else{
+        else {
             this.setState({
                 controls: updatedControls,
                 [timelineName]: timelines
             })
         }
-        
+
 
 
     }
@@ -1007,7 +1017,7 @@ class AddTeacherContainer extends React.Component{
 
     valueChangeHandler = (event, controlName, objectIndex = -1, key = undefined) => {
 
-        
+
         if (!this.state.controlWithCustomEvent.includes(controlName)) {
             key === 'currentlyWorking' || 'gender' ? event.stopPropagation() : event.preventDefault()
         }
@@ -1143,16 +1153,30 @@ class AddTeacherContainer extends React.Component{
             if (key === 'currentlyWorking') {
                 let fromControl = object['from']
                 let toControl = object['to']
-                if (fromControl.touched) {
-                    fromControl.valid = validationResult.isValid
-                    fromControl.errorMessage = validationResult.errorMessage
-                }
+                fromControl.valid = validationResult.isValid
+                fromControl.errorMessage = validationResult.errorMessage
                 toControl.valid = validationResult.isToValid
                 toControl.errorMessage = validationResult.toErrorMessage
                 object['from'] = fromControl
                 object['to'] = toControl
                 object[key].touched = true
                 object[key].valid = event.target.checked
+                if (!validationResult.isValid && validationResult.errorMessage === 'Please enter value for From.') {
+                    object[key].controlConfig.checked = false
+                    object[key].value = false
+                    object[key].valid = false
+                    for (let index = 0; index < control.length; index++) {
+
+                        let object = control[index]
+                        if (index !== objectIndex) {
+                            let newCurrentlyWorking = object['currentlyWorking']
+                            newCurrentlyWorking.controlConfig.disabled = false
+                            object['currentlyWorking'] = newCurrentlyWorking
+                            control[index] = object
+                        }
+    
+                    }
+                }
             }
             else {
                 object[key].touched = true
@@ -1174,22 +1198,22 @@ class AddTeacherContainer extends React.Component{
             control.valid = validationResult.isValid
             control.errorMessage = validationResult.errorMessage
 
-            if(controlName === 'state'){
+            if (controlName === 'state') {
 
                 let newDistrictControl = updatedControls['district']
-                
+
                 let options = control.options
-                if(control.touched && !newDistrictControl.touched){
-                    
+                if (control.touched && !newDistrictControl.touched) {
+
                     for (let index = 0; index < options.length; index++) {
                         const element = options[index];
 
-                        if(element.value === control.value){
+                        if (element.value === control.value) {
                             let district_id = element.district_id
                             axios.get(api.GET_DISTRICTS + district_id)
-                                .then(response =>{
-                                    let optionArray = response.data.districts.map(district =>{
-                                        return{
+                                .then(response => {
+                                    let optionArray = response.data.districts.map(district => {
+                                        return {
                                             id: district,
                                             value: district
                                         }
@@ -1201,17 +1225,17 @@ class AddTeacherContainer extends React.Component{
                                         controls: updatedControls
                                     })
                                 })
-                                .catch(error =>{
+                                .catch(error => {
                                     console.log(error)
                                 })
                             break;
 
                         }
-                        
+
                     }
 
                 }
-                else if(control.touched && newDistrictControl.touched){
+                else if (control.touched && newDistrictControl.touched) {
 
                     newDistrictControl.value = ''
                     newDistrictControl.valid = false
@@ -1220,12 +1244,12 @@ class AddTeacherContainer extends React.Component{
                     for (let index = 0; index < options.length; index++) {
                         const element = options[index];
 
-                        if(element.value === control.value){
+                        if (element.value === control.value) {
                             let district_id = element.district_id
                             axios.get(api.GET_DISTRICTS + district_id)
-                                .then(response =>{
-                                    let optionArray = response.data.districts.map(district =>{
-                                        return{
+                                .then(response => {
+                                    let optionArray = response.data.districts.map(district => {
+                                        return {
                                             id: district,
                                             value: district
                                         }
@@ -1237,13 +1261,13 @@ class AddTeacherContainer extends React.Component{
                                         controls: updatedControls
                                     })
                                 })
-                                .catch(error =>{
+                                .catch(error => {
                                     console.log(error)
                                 })
                             break;
 
                         }
-                        
+
                     }
 
                 }
@@ -1308,8 +1332,8 @@ class AddTeacherContainer extends React.Component{
         }
     }
 
-    contactDetailsObject(){
-        return{
+    contactDetailsObject() {
+        return {
             contactNumber: String
         }
     }
@@ -1329,9 +1353,9 @@ class AddTeacherContainer extends React.Component{
             address: String,
             contactNumber: String,
             pancard: String,
-            contactDetails:[],
-            subjects:[],
-            teachingLevel:[],
+            contactDetails: [],
+            subjects: [],
+            teachingLevel: [],
             qualification: [],
             experience: [],
             qualificationTimeline: this.state.qualificationTimeline,
@@ -1466,7 +1490,8 @@ class AddTeacherContainer extends React.Component{
                     newEntryFromUser={this.valueChangeHandler}
                     isAddTeacherButtonDisabled={isAddTeacherButtonDisabled}
                     addTeacherFormSubmitted={this.addTeacherFormSubmissionHandler}
-                    formTitle = 'Enroll New Teacher'
+                    formTitle='Enroll New Teacher'
+                    loading = {this.props.addNewTeacherLoading}
                 />
             </div>
         )
@@ -1486,7 +1511,7 @@ class AddTeacherContainer extends React.Component{
 
     //     if (nextProps.subjects.length > 0 && updatedSubjects.options == null) {
 
-           
+
 
     //         let subjects = nextProps.subjects.map(subject => {
     //             return {
@@ -1513,7 +1538,7 @@ class AddTeacherContainer extends React.Component{
     componentDidUpdate(prevProps, prevState) {
 
 
-        
+
         if (this.props.subjects !== prevProps.subjects) {
 
             let updatedControl = {
@@ -1532,16 +1557,16 @@ class AddTeacherContainer extends React.Component{
             })
 
 
-                updatedSubjects.options = subjects
-                updatedControl.subjects = updatedSubjects
-                this.setState({
-                    controls: updatedControl
-                })
-            
+            updatedSubjects.options = subjects
+            updatedControl.subjects = updatedSubjects
+            this.setState({
+                controls: updatedControl
+            })
+
 
         }
 
-        if(this.props.states !== prevProps.states){
+        if (this.props.states !== prevProps.states) {
 
             let updatedControl = {
                 ...prevState.controls
@@ -1566,7 +1591,7 @@ class AddTeacherContainer extends React.Component{
             })
         }
 
-        if(this.props.categories !== prevProps.categories){
+        if (this.props.categories !== prevProps.categories) {
 
             let updatedControl = {
                 ...prevState.controls
@@ -1592,7 +1617,7 @@ class AddTeacherContainer extends React.Component{
         }
 
 
-        
+
 
 
     }
@@ -1625,4 +1650,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddTeacherContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AddTeacherContainer)
