@@ -14,7 +14,7 @@ class LoginContainer extends Component {
                     type: 'text',
                     name: 'userid',
                     id: 'userid',
-                    placeholder: 'Your Email or User ID',
+                    placeholder: 'email or user id',
                     disabled: false
                 },
                 label: 'User ID',
@@ -35,7 +35,7 @@ class LoginContainer extends Component {
                     type: 'password',
                     name: 'password',
                     id: 'password',
-                    placeholder: 'Your Password',
+                    placeholder: 'your password',
                     disabled: false
                 },
                 label: 'Password',
@@ -115,10 +115,8 @@ class LoginContainer extends Component {
         return (
 
             <div className={styles.LoginContainer}>
-                <h3 style={{
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '2px'
-                    }}>login</h3>
+                <div className={styles.nav}></div>
+                <h3 className={styles.Title}>login</h3>
                 <Login
                     controls={controls}
                     changed={this.valueChangeHandler}

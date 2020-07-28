@@ -5,58 +5,75 @@ import Spinner from '../Spinner/Spinner'
 const Button = (props) => {
 
     let ButtonElement = null;
-
-
+    let dynamicContainer = [styles.ButtonContainer]
+    let dynamicElementStyle = [styles.ButtonElement]
+    if (props.errorBoxRequired) {
+        dynamicContainer.push(styles.ButtonContainerWithErrorMessage)
+    }
     switch (props.buttonType) {
         case 'standard':
-            ButtonElement = <div className={styles.ButtonStandard}>
-                <button disabled={props.isDisabled} onClick={props.clicked}>
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-
-            </div>
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
         case 'standard-reverse':
-            ButtonElement = <div className={styles.ButtonStandardReverse}>
-                <button disabled={props.isDisabled} onClick={props.clicked}>
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            dynamicElementStyle.push(styles.ButtonElementReverse)
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
         case 'submit':
-
-            ButtonElement = <div className={styles.ButtonSubmit}>
-                <button disabled={props.isDisabled} >
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                className={dynamicElementStyle.join(' ')} >
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
         case 'cancel':
-
-            ButtonElement = <div className={styles.ButtonCancel}>
-                <button disabled={props.isDisabled} >
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            dynamicElementStyle.push(styles.ButtonElementCancel)
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
         case 'add':
-            ButtonElement = <div className={styles.ButtonAdd}>
-                <button disabled={props.isDisabled} onClick={props.clicked}>
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            dynamicElementStyle.push(styles.ButtonElementAdd)
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
         case 'delete':
-            ButtonElement = <div className={styles.ButtonDelete}>
-                <button disabled={props.isDisabled} onClick={props.clicked}>
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            dynamicElementStyle.push(styles.ButtonElementDelete)
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
 
         default:
-            ButtonElement = <div className={styles.ButtonStandard}>
-                <button disabled={props.isDisabled} onClick={props.clicked}>
-                    {props.loading ? <Spinner /> : props.buttonName}</button>
-            </div>
+            ButtonElement = <button
+                disabled={props.isDisabled}
+                onClick={props.clicked}
+                className={dynamicElementStyle.join(' ')}>
+                {props.loading ? <Spinner /> : props.buttonName}</button>
             break;
     }
 
-    return ButtonElement
+    return (
+
+        <div className={dynamicContainer.join(' ')}>
+            {ButtonElement}
+            {props.errorBoxRequired ? <p className={styles.ErrorMessage}>{props.errorMessage}</p> : null}
+        </div>
+
+    )
 }
 
 export default Button

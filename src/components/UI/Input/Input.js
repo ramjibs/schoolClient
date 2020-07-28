@@ -21,10 +21,7 @@ const Input = (props) => {
     if (props.touched && !props.valid) {
         dynamicStyles.push(styles.InValidInputElement)
     }
-    if (props.animateInput) {
-        dynamicStyles.push(styles.InputElementAnimie)
-
-    }
+   
 
 
 
@@ -41,18 +38,18 @@ const Input = (props) => {
         case 'select':
 
             inputElement = <div className={dynamicStyles.join(' ')}>
-                <select 
-                onChange={props.changed} 
-                id={props.controlConfig.id}
-                disabled={props.controlConfig.disabled}
-                name={props.controlConfig.name}
-                value = {props.value || props.controlConfig.default}
+                <select
+                    onChange={props.changed}
+                    id={props.controlConfig.id}
+                    disabled={props.controlConfig.disabled}
+                    name={props.controlConfig.name}
+                    value={props.value || props.controlConfig.default}
                 >
-                    <option value={props.controlConfig.default}  disabled>{props.controlConfig.defaultValue}</option>
+                    <option value={props.controlConfig.default} disabled>{props.controlConfig.defaultValue}</option>
                     {props.options != null ? props.options.map(option => {
                         return <option
-                                value={option.value}
-                                key={option.id}>
+                            value={option.value}
+                            key={option.id}>
                             {option.value}
                         </option>
                     }) : null}
@@ -161,10 +158,10 @@ const Input = (props) => {
         case 'select-multiple':
 
             inputElement = <MultipleSelect
-                controlConfig = {props.controlConfig}
-                value = {props.value}
-                valid = {props.valid}
-                touched = {props.touched}
+                controlConfig={props.controlConfig}
+                value={props.value}
+                valid={props.valid}
+                touched={props.touched}
                 items={props.options}
                 valueChanged={props.changed}
             />
@@ -178,9 +175,12 @@ const Input = (props) => {
     }
 
     return (
-        <div className={styles.FormField}>
+        <div>
             {props.notRequiredLabel ? null :
-                (<label htmlFor ={props.controlConfig.id}className={props.animateLabel ? styles.LabelAnimie : ''}>{props.label}</label>
+                (<div className={styles.Label}>
+                    <label
+                        htmlFor={props.controlConfig.id}
+                    >{props.label}</label></div>
                 )}
 
             {inputElement}

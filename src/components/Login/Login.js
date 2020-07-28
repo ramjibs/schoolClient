@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Login.module.css'
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const Login = (props) => {
 
 
@@ -25,45 +25,31 @@ const Login = (props) => {
 
     if (props.error) {
         error = (
-            <div className={styles.ErrorMessage}>
-                <p>{props.error.msg}</p>
-            </div>
+            <p className={styles.ErrorMessage}>{props.error.msg}</p>
         )
     }
 
     return (
 
         <div className={styles.LoginBox}>
-            <div className={styles.LoginForm} >
-                <form
-                    onSubmit={props.login}>
-                    {controls}
-                    <div className={styles.ForgotPassword}>
-                        <NavLink to='/forgot-password'>Forgot Password ?</NavLink>
-                    </div>
-                    <Button 
-                        buttonType = 'submit'
-                        isDisabled = {props.isLoginDisabled }
-                        loading = {props.loading}
-                        buttonName = 'Login'
-                    />
-                    
-                    {error}
+            <form
+                className={styles.InputFormFileds}
+                onSubmit={props.login}>
+                {controls}
+                <Button
+                    buttonType='submit'
+                    isDisabled={props.isLoginDisabled}
+                    loading={props.loading}
+                    errorBoxRequired
+                    errorMessage={props.error? props.error.msg : ''}
+                    buttonName='Login'
 
-                </form>
-                <p style={{
-                    'fontSize': 'large',
-                    'textAlign': 'center',
-                    'color': 'darkgrey'
-                }}>Or</p>
-                <Button 
-                        buttonType = 'standard-reverse'
-                        clicked = {props.signUp}
-                        buttonName = 'signup'
-                    />
-                
-            </div>
-
+                />
+            </form>
+            {/* {error} */}
+            <Link
+                className={styles.ForgotPassword}
+                to='/forgot-password'>Forgot Password ?</Link>
         </div>
 
 
