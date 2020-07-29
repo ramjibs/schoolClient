@@ -5,17 +5,18 @@
    flex-direction: column;
    width: 40rem;
    padding: 2.5rem;
+   background-color:#FFF;
    border-style: dotted;
    border: 1.5px solid rgb(229, 227, 221);
    border-radius: 5px;
-   box-shadow: 6px 5px 5px 1px rgba(80, 76, 76, 0.1);
+   box-shadow: 5px 10px 10px 5px rgba(80, 76, 76, 0.2);
    
 }
 
 .InputFormFileds{
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 8.5rem 8.5rem 8.5rem;
+  grid-template-rows: 8.5rem 8.5rem 8.5rem;
   grid-gap: 1rem;
 
 }
@@ -29,8 +30,8 @@
   margin-bottom: .4rem;
 }
 
-.ForgotPassword{  
- 
+.ForgotPasswordLink{  
+  color:rgb(0, 0, 238);
   padding: .5rem 0 0 .5rem;
   align-self: flex-end;
   text-decoration: none;

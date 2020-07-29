@@ -5,21 +5,6 @@
     cursor: text;
   }
 
-  .Otp{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .Otp input{
-    width: 3rem;
-    height: 3rem;
-    outline: none;
-    text-align: center;
-    font-size: x-large;
-  }
 
   .RadioElement{
     display: flex;
@@ -38,7 +23,12 @@
    
   }
 
-  
+  .OtpBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* width: 100%; */
+  }
 
   .InputElement input, textarea, select{
 
@@ -52,6 +42,17 @@
     width: 100%;
 
 }
+
+.OtpBox input{
+  width: 4rem;
+  outline: none;
+  text-align: center;
+  font-size: x-large;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(43, 42, 41);
+
+}
+
 
 
 

@@ -3,7 +3,7 @@ import Button from '../UI/Button/Button'
 import Input from '../UI/Input/Input'
 import styles from './forgotPassword.module.css'
 const ForgotPassword = props => {
-    
+
     let controls = props.controls.map(object => {
 
         if (object.id !== 'userId') {
@@ -19,28 +19,19 @@ const ForgotPassword = props => {
                 changed={(event, i) => props.changed(event, object.id, i)}
                 otpLength={object.control.otpLength} />
         }
-        else{
+        else {
             return null
         }
 
     })
 
     let error = null
-    let errorChangePass = null
 
     if (props.error) {
         error = (
             <div className={styles.ErrorMessage}>
                 <p>{props.error}</p>
             </div>
-        )
-    }
-
-    if(props.errorChangePass){
-        errorChangePass = (
-            <div className={styles.ErrorMessage}>
-            <p>{props.errorChangePass}</p>
-        </div>
         )
     }
 
@@ -59,44 +50,38 @@ const ForgotPassword = props => {
 
     if (props.showPassAndOtp) {
         showPassAndOtp = <>
-            <p style={{
-                'fontSize': 'medium',
-                'color': 'darkgrey'
-            }}
-            >{props.otpMessage}</p>
+            <p className={styles.OptMessage}>
+                An OTP is sent to your Mail ID. If not received you can request new one after 3 mins.'{props.otpMessage}
+            </p>
             {controls}
-            <Button 
-                        buttonType = 'standard'
-                        isDisabled = {props.isChangePasswordnDisabled }
-                        clicked = {props.changePassword}
-                        loading = {props.loadingChangePass}
-                        buttonName = 'Change Password'
-                    />
-
-            {errorChangePass} </>
+            <Button
+                buttonType='standard'
+                isDisabled={props.isChangePasswordnDisabled}
+                clicked={props.changePassword}
+                loading={props.loadingChangePass}
+                errorBoxRequired
+                errorMessage={props.errorChangePass}
+                buttonName='Change Password'
+            />
+        </>
     }
 
     return (
 
-        <div className={styles.ForgotPassword}>
-            <div className={styles.ForgotPasswrodForm} >
-                <form>
-                    {userId}
-                    <Button 
-                        buttonType = 'standard'
-                        isDisabled = {props.otpButtondisabled }
-                        clicked = {props.sendOtpClicked}
-                        loading = {props.loadingOtpRequest}
-                        buttonName = {props.otpButtonName}
-                    />
-                   
-                    {error}
+        <div className={styles.ForgotPasswordBox}>
+            <form className={styles.InputFormFileds}>
+                {userId}
+                <Button
+                    buttonType='standard'
+                    isDisabled={props.otpButtondisabled}
+                    clicked={props.sendOtpClicked}
+                    loading={props.loadingOtpRequest}
+                    buttonName={props.otpButtonName}
 
-                    {showPassAndOtp}
-
-
-                </form>
-            </div>
+                />
+                {error}
+                {showPassAndOtp}
+            </form>
         </div>
     )
 }

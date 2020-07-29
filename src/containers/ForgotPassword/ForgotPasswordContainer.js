@@ -17,7 +17,7 @@ class ForgotPasswordContainer extends Component {
                     type: 'text',
                     name: 'userid',
                     id: 'userid',
-                    placeholder: 'Your Email or User ID',
+                    placeholder: 'your email or user id',
                     disabled: false
                 },
                 label: 'User ID',
@@ -36,7 +36,7 @@ class ForgotPasswordContainer extends Component {
                     type: 'password',
                     name: 'newpassword',
                     id: 'newpassword',
-                    placeholder: 'New Password',
+                    placeholder: 'your password',
                     disabled: false
                 },
                 label: 'New Password',
@@ -57,7 +57,7 @@ class ForgotPasswordContainer extends Component {
                     type: 'password',
                     name: 'confirmPassword',
                     id: 'confirmPassword',
-                    placeholder: 'Confirm Password',
+                    placeholder: 'retype password',
                     disabled: false
                 },
                 label: 'Confirm Password',
@@ -253,10 +253,8 @@ class ForgotPasswordContainer extends Component {
 
         return (
             <div className={styles.ForgotPasswordContainer}>
-                <h3 style={{
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '2px'
-                    }}>forgotPassword</h3>
+                <h5 className={styles.Title}>forgot Password</h5>
+                {/* <div className={styles.nav}></div> */}
                 <ForgotPassword
                     controls={controls}
                     changed={this.valueChangeHandler}

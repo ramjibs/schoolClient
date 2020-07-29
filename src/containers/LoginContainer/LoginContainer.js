@@ -116,7 +116,7 @@ class LoginContainer extends Component {
 
             <div className={styles.LoginContainer}>
                 <div className={styles.nav}></div>
-                <h3 className={styles.Title}>login</h3>
+                <h5 className={styles.Title}>login</h5>
                 <Login
                     controls={controls}
                     changed={this.valueChangeHandler}

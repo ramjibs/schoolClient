@@ -78,10 +78,11 @@ const Input = (props) => {
             break;
         case 'otp':
             let inputs = [];
-
+            dynamicStyles.push(styles.OtpBox)
             for (let i = 0; i < props.otpLength; i++) {
                 inputs.push(
                     <input key={i}
+                        
                         {...props.controlConfig}
                         value={props.value[i] || ''}
                         ref={otpRefs[i]}
@@ -93,7 +94,7 @@ const Input = (props) => {
                 )
             }
             inputElement =
-                <div className={styles.Otp}>
+                <div className={dynamicStyles.join(' ')}>
                     {inputs}
                 </div>
             break;

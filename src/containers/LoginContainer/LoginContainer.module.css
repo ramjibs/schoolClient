@@ -1,5 +1,5 @@
 .LoginContainer {
-
+    position: relative;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -17,10 +17,12 @@
 }
 
 .nav{
+    
     display: block;
     height: 7rem;
     width: 100%;
     position: absolute;
+    background-color: white;
     top:0;
     left: 0;
     border-bottom: 0.5px solid  rgb(229, 227, 221);;

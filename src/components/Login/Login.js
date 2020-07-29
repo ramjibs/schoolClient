@@ -21,13 +21,7 @@ const Login = (props) => {
             changed={(event) => props.changed(event, object.id)} />
     ))
 
-    let error = null
-
-    if (props.error) {
-        error = (
-            <p className={styles.ErrorMessage}>{props.error.msg}</p>
-        )
-    }
+    
 
     return (
 
@@ -48,7 +42,7 @@ const Login = (props) => {
             </form>
             {/* {error} */}
             <Link
-                className={styles.ForgotPassword}
+                className={styles.ForgotPasswordLink}
                 to='/forgot-password'>Forgot Password ?</Link>
         </div>
 
