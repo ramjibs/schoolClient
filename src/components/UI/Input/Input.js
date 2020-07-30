@@ -29,6 +29,7 @@ const Input = (props) => {
         case 'input':
             inputElement = <div className={dynamicStyles.join(' ')}>
                 <input
+                    autoComplete= "off"
                     {...props.controlConfig}
                     value={props.value}
                     onChange={props.changed} />

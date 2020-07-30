@@ -51,7 +51,7 @@ const ForgotPassword = props => {
     if (props.showPassAndOtp) {
         showPassAndOtp = <>
             <p className={styles.OptMessage}>
-                An OTP is sent to your Mail ID. If not received you can request new one after 3 mins.'{props.otpMessage}
+                {props.otpMessage}
             </p>
             {controls}
             <Button

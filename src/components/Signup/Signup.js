@@ -20,21 +20,12 @@ const Signup = (props) => {
             changed={(event) => props.changed(event, object.id)} />
     ))
 
-    let error = null
-
-    if (props.error) {
-        error = (
-            <div className={styles.ErrorMessage}>
-                <p>{props.error}</p>
-            </div>
-        )
-    }
-
+   
     return (
 
-        <div className={styles.Signup}>
-            <div className={styles.SignupForm} >
+        <div className={styles.SignupBox}>
                 <form
+                    className={styles.InputFormFileds}
                     onSubmit={props.signup}>
                     {controls}
                     <Button 
@@ -42,12 +33,11 @@ const Signup = (props) => {
                         isDisabled = {props.isSignupDisabled}
                         loading = { props.loading }
                         buttonName = 'signup'
+                        errorBoxRequired
+                        errorMessage={props.error}
                     />
-                    
-                    {error}
 
                 </form>
-            </div>
 
         </div>
 

@@ -15,7 +15,7 @@ class SignupContainer extends Component {
                     type: 'text',
                     name: 'schoolName',
                     id: 'schoolName',
-                    placeholder: 'Your School Name',
+                    placeholder: 'your school name',
                     disabled: false
                 },
                 label: 'School Name',
@@ -34,7 +34,7 @@ class SignupContainer extends Component {
                     type: 'email',
                     name: 'email',
                     id: 'email',
-                    placeholder: 'Your Email ID',
+                    placeholder: 'your school email id',
                     disabled: false
                 },
                 label: 'Email',
@@ -44,7 +44,7 @@ class SignupContainer extends Component {
                 touched: false,
                 validation: {
                     required: true,
-                   
+
                 },
 
             },
@@ -54,7 +54,7 @@ class SignupContainer extends Component {
                     type: 'text',
                     name: 'registrationNumber',
                     id: 'registrationNumber',
-                    placeholder: 'Your School Registration Number',
+                    placeholder: 'your school registration number',
                     disabled: false
                 },
                 label: 'Registration Number',
@@ -64,9 +64,9 @@ class SignupContainer extends Component {
                 touched: false,
                 validation: {
                     required: true,
-                    
+
                 },
-                
+
 
             },
             licenseNumber: {
@@ -75,7 +75,7 @@ class SignupContainer extends Component {
                     type: 'text',
                     name: 'licenseNumber',
                     id: 'licenseNumber',
-                    placeholder: 'Your School License Number',
+                    placeholder: 'your school license number',
                     disabled: false
                 },
                 label: 'License Number',
@@ -95,12 +95,12 @@ class SignupContainer extends Component {
     }
 
     componentDidUpdate() {
-        if(this.props.signupSuccess){
+        if (this.props.signupSuccess) {
             this.props.history.replace('/')
         }
     }
 
-   
+
     valueChangeHandler = (event, key) => {
 
         event.preventDefault();
@@ -145,42 +145,39 @@ class SignupContainer extends Component {
             })
             isSignupDisabled = this.state.controls[key].valid && isSignupDisabled
         }
-        
-        
+
+
         return (
 
             <div className={styles.SignupContainer}>
                 <div className={styles.AboutSchool}>
-                    <h1 className={styles.heading}>School.It</h1>
-                    <p className={styles.para}>A Paperless Office for your Organization</p>
-                    <p className={styles.para}>
-                        Thank you for Choosing us, we are determined to completely move all work releated to school to
-                         a paperless environment where managing technical staff, 
+                    <h1 className={styles.AboutSchoolTitle}>School.It</h1>
+                    <p className={styles.AboutSchoolContent}>A Paperless Office for your Organization
+                    <br />
+                         Thank you for Choosing us, we are determined to completely move all work releated to school to
+                         a paperless environment where managing technical staff,
                          non-technical staff, Students and Parents were made easy.
                          School as an application provides you realtime data about your students attendence, mark sheet, ranks as well as teachers
                          performance, timetables and what not.
-                    </p>
-                    <p className={styles.para}>
+                         <br />
                          We act as bridge to connect with parents and teachers, So you can reach out to any parents of your students within no time in delay.
                          A Complete Suite for Paperless Office.
                     </p>
-                </div>
-                <div className={styles.SignupForm}>
-                    <h3 style={{
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '2px'
-                    }}>Registration</h3>
-                <Signup
-                    controls={controls}
-                    changed={this.valueChangeHandler}
-                    signup={this.signupHandler}
-                    isSignupDisabled={!isSignupDisabled}
-                    loading={this.props.loading}
-                    error={this.props.error}
-                     />
 
                 </div>
-                
+                <div className={styles.SignupForm}>
+                    <h3 className={styles.Title}>signup</h3>
+                    <Signup
+                        controls={controls}
+                        changed={this.valueChangeHandler}
+                        signup={this.signupHandler}
+                        isSignupDisabled={!isSignupDisabled}
+                        loading={this.props.loading}
+                        error={this.props.error}
+                    />
+
+                </div>
+
             </div>
 
 
