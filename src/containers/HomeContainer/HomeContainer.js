@@ -7,6 +7,7 @@ import DashboardContainer from '../Dashboard/DashboardContainer'
 import { retry } from '../../utility/RetryChunk'
 import * as actionCreators from '../../store/actions'
 import { connect } from 'react-redux'
+import SideBar from '../../components/Navigation/SideBar/SideBar'
 const TeachersContainer = lazy(() => retry(() => import('../Teachers/TeachersContainer')))
 const StudentsContainer = lazy(() => retry(() => import('../Students/StudentsContainer')))
 const ClassroomsContainer = lazy(() => retry(() => import('../Classrooms/ClassroomsContainer')))
@@ -26,6 +27,7 @@ class HomeContainer extends Component {
         super(props)
         this.pathname = this.props.match.path
         this.url = this.props.match.url
+        this.navigationMenus = ['dashboard','teachers', 'students', 'classrooms', 'timetable', 'exams', 'reports', 'settings', 'logout' ]
 
         this.routes = (
 
@@ -72,9 +74,9 @@ class HomeContainer extends Component {
                 </Switch>
             </Suspense>
 
-
-
         )
+
+        
 
 
     }
@@ -95,7 +97,7 @@ class HomeContainer extends Component {
 
         return (
 
-            <Layout >
+            <Layout sidebar={<SideBar navigationMenus = {this.navigationMenus} />}>
                 {this.routes}
             </Layout>
 

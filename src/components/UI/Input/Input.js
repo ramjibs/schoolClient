@@ -29,7 +29,6 @@ const Input = (props) => {
         case 'input':
             inputElement = <div className={dynamicStyles.join(' ')}>
                 <input
-                    autoComplete= "off"
                     {...props.controlConfig}
                     value={props.value}
                     onChange={props.changed} />
@@ -102,6 +101,7 @@ const Input = (props) => {
         case 'textarea':
             inputElement = <div className={dynamicStyles.join(' ')} >
                 <textarea
+                    
                     {...props.controlConfig}
                     value={props.value}
                     onChange={props.changed}
@@ -147,12 +147,14 @@ const Input = (props) => {
 
         case 'checkbox':
 
-            inputElement = <div>
+            inputElement = <div className={styles.CheckboxElement} >
                 <input  {...props.controlConfig}
                     onChange={props.changed}
-
+                    
                 />
-                <label htmlFor={props.controlConfig.id}>{props.label}</label>
+                <label
+               
+                 htmlFor={props.controlConfig.id}>{props.label}</label>
             </div>
 
             break;
@@ -178,7 +180,7 @@ const Input = (props) => {
 
     return (
         <div>
-            {props.notRequiredLabel ? null :
+            {props.notRequiredLabel ? <div className={styles.LabelNotRequired}></div> :
                 (<div className={styles.Label}>
                     <label
                         htmlFor={props.controlConfig.id}

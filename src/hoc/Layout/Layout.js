@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './Layout.module.css'
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
 import axios from '../../axios-school'
 
 class Layout extends React.Component {
@@ -29,10 +28,10 @@ class Layout extends React.Component {
         return (
 
             <div className={styles.Layout}>
-                <div className={styles.Toolbar}>
-                    <Toolbar />
+                <div className={[styles.SideBar, styles.SideBarClosed].join(' ')}>
+                    {this.props.sidebar}
                 </div>
-                <div className={styles.Pages}>
+                <div className={[styles.PageContainer, styles.PageContainerExpand].join(' ')}>
                     {this.props.children}
                 </div>
             </div>

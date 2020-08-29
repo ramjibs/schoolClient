@@ -1,22 +1,55 @@
-.Form{
-    width: 100%;
+.FormTitle{
+    margin-bottom: 2rem;
 }
 
-.SpecialControlCount{
+.FormControls, .FormSpecialControls{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem , 1fr));
+    grid-auto-rows: 9rem;
+    gap: 1rem;
+   
+}
+
+
+.SpecialControls{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: -1rem;
+}
+.SpecialControls:first-of-type{
+    margin-bottom: 0;
+}
+.SpecialControlsCount{
+    align-self: center;
+    border-bottom: 1px solid black;
+    margin-bottom: .5rem;
+}
+
+.SpecialControlsMargin{
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
+    /* margin-block-start: -0.35em; */
+    margin-inline-start: -0.75em;
+    margin-inline-end: -0.75em;
+    /* margin-block-end: -0.625em; */
 }
 
 .FormSubmission{
     display: flex;
-    justify-content: space-between;
-    
 }
 
-.FormSubmission div{
-    width: 48%;
+.FormSubmission > div:first-of-type{
+    
+    margin-right: 3rem;
+ }
+
+.FormSubmission > div{
+    flex: 1;
 }
+
+
+
+
 
 
 

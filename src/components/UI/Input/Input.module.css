@@ -2,18 +2,32 @@
 .Label{
     margin-bottom: .4rem;
     color: rgb(112, 108, 100);
+    /* color: black; */
     cursor: text;
+  }
+
+  .LabelNotRequired{
+    height: 1.6rem;
+    margin-bottom: .4rem;
   }
 
 
   .RadioElement{
     display: flex;
     flex-direction: row;
-    margin-top:10px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
   }
   .RadioElement div{
    
-    margin: 8px;
+    margin: 0.5rem 1rem 0 0;
+  }
+
+  .RadioElement div label, .CheckboxElement label{
+   
+    margin-left: 0.5rem;
+    color: rgb(112, 108, 100);
   }
   
   .InputElement{
@@ -30,12 +44,13 @@
     /* width: 100%; */
   }
 
-  .InputElement input, textarea, select{
+  .InputElement input,.InputElement textarea,.InputElement select{
 
     display: block;
     color: rgb(36, 30, 18);
     height: 4rem;
-    background: rgb(245, 244, 242);
+    /* background: rgb(245, 244, 242); */
+    background: white;
     border: 1px solid rgb(229,227,221);
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -50,6 +65,13 @@
   font-size: x-large;
   background: rgb(255, 255, 255);
   border: 1px solid rgb(43, 42, 41);
+
+}
+
+.InValidInputElement input, .InValidInputElement textarea,.InValidInputElement select { 
+
+  background-color: rgb(250, 233, 234);
+  border-color: rgb(214, 41, 41);
 
 }
 
@@ -83,24 +105,19 @@
 }
 
 
-.InputElement textarea {
+/* .InputElement textarea {
   height: 5rem;
-}
+} */
 
- .InputElement input:focus, textarea:focus{
+ 
+
+  
+  
+  .InputElement input:focus, .InputElement textarea:focus, .InputElement select:focus{
     background-color: white;
     border-color: rgb(31, 28, 28);
   }
-
-  .InValidInputElement input{ 
-
-    background-color: rgb(250, 233, 234);
-    border-color: rgb(214, 41, 41);
-
-  }
-  
-  
-  .InValidInputElement input:focus{ 
+  .InValidInputElement input:focus, .InValidInputElement textarea:focus,.InValidInputElement select:focus{ 
     background-color: white;
     border-color: rgb(214, 41, 41);
   }

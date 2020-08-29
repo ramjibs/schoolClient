@@ -40,7 +40,6 @@ export const signup = (signup) => {
                 
             })
             .catch(error => {
-                 console.log(error.response.data)
                 dispatch(signupFail(error.response.data.msg))
             })
 

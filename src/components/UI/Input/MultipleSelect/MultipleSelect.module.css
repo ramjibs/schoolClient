@@ -1,27 +1,25 @@
 .SelectBoxContainer{
 
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 10px;
-    overflow: hidden;
+    display: block;
+    position: relative;
+    height: 4rem;
+    margin-bottom: 1rem;
     
 
 }
 
 .SelectDisplayBox{
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
 }
 
 .SelectBox{
 
     box-shadow: none;
-    box-sizing: border-box;
     color: rgb(112, 108, 100);
-    height: 3rem;
-    font-size: 1rem !important;
+    height: 4rem;
     background: rgb(245, 244, 242);
+    background: white;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(229, 227, 221);
@@ -30,31 +28,30 @@
     padding: 0.75rem 1rem;
     transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
     border-radius: 4px;
-    width: 100%;
     -webkit-appearance: textfield;
-    font-family: Arial, Helvetica, sans-serif;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     border-right-width: 0px;
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
+    flex:3;
 }
 
 .DropDownBox{
-
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: none;
-    box-sizing: border-box;
-    color: rgb(112, 108, 100);
-    height: 3rem;
-    font-size: 1rem !important;
-    background: rgb(245, 244, 242);
+    height: 4rem;
+    background: white;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(229, 227, 221);
     border-image: initial;
     outline: none;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.75rem;
     border-radius: 4px;
     overflow: hidden;
     border-left-width: 0px;
@@ -100,44 +97,43 @@
 
 .SelectBoxUp{
 
-    /* right: 1.2rem;
-    position: absolute; */
-    width: 0;
-    height: 0;
-    border-left: 0.6rem solid transparent;
-    border-right: 0.6rem solid transparent;
-    border-bottom: 1.2rem solid rgb(88, 85, 85);
-    padding: 0;
-    margin: 0;
+    
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid black;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(-135deg);
 }
 
 .SelectBoxDown{
     
-    /* right: 1.2rem;
-    position: absolute; */
-    width: 0;
-    height: 0;
-    border-left: 0.6rem solid transparent;
-    border-right: 0.6rem solid transparent;
-    border-top: 1.2rem solid  rgb(88, 85, 85);
-    padding: 0;
-    margin: 0;
+    
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid black;
+    border-bottom: 0;
+    border-right: 0;
+    transform: rotate(-135deg);
     
 }
 
 .DropDown{
     
-    box-sizing: border-box;
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid grey;
-    overflow-y: scroll;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    overflow-y: auto;
     overflow-x: hidden;
-    height: 12rem;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-    position: relative;
+    height: 20rem;
+    background-color: white;
+    position: absolute;
     cursor: pointer;
+    top:4rem;
+    z-index: 1;
+    border: 1.5px solid rgb(229, 227, 221);
+    border-radius: 4px;
+    box-shadow:-1px 2px 11px 0px rgba(80, 76, 76, 0.2);
 }
 
 .ItemList{
@@ -150,7 +146,6 @@
     border-bottom: 1px solid grey;
     padding: 10px;
     padding-left: 15px;
-    font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
 
@@ -158,15 +153,16 @@
 }
 
 .ItemList:hover{
-    /* background-color: #ddd; */
-    /* height: 3.4rem; */
     padding: 0;
     
 }
 
 .selected{
-    background-color: #ddd;
-
+    
+    background-color: rgb(41, 133, 175);
+    margin-left: -10px;
+    color: #fff;
+    
 }
 
 

@@ -13,14 +13,51 @@ class MultipleSelect extends React.Component {
             selectedValues: [],
             selectedId: [],
             dynamicStyles: [styles.SelectBox],
-            dynamicStylesDropDownBox:[styles.DropDownBox]
+            dynamicStylesDropDownBox: [styles.DropDownBox]
 
 
         }
 
+        this.toggleContainer = React.createRef();
+        this.timeOutId = null;
+
+        this.onBlurHandler = this.onBlurHandler.bind(this);
+        this.onFocusHandler = this.onFocusHandler.bind(this);
+        this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
         this.showOrHideDropDown = this.showOrHideDropDown.bind(this)
         this.selectOrDeselectItem = this.selectOrDeselectItem.bind(this)
 
+    }
+
+    componentDidMount() {
+        window.addEventListener('click', this.onClickOutsideHandler);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('click', this.onClickOutsideHandler);
+    }
+
+    onClickOutsideHandler(event) {
+        if (this.state.showItemList && !this.toggleContainer.current.contains(event.target)) {
+            this.setState({ showItemList: false });
+        }
+    }
+
+    // We close the popover on the next tick by using setTimeout.
+    // This is necessary because we need to first check if
+    // another child of the element has received focus as
+    // the blur event fires prior to the new focus event.
+    onBlurHandler() {
+        this.timeOutId = setTimeout(() => {
+            this.setState({
+                showItemList: false
+            });
+        });
+    }
+
+    // If a child receives focus, do not close the popover.
+    onFocusHandler() {
+        clearTimeout(this.timeOutId);
     }
 
 
@@ -92,12 +129,12 @@ class MultipleSelect extends React.Component {
 
             let index = updatedState.dynamicStyles.indexOf(styles.SelectBoxFocused)
             updatedState.dynamicStyles.splice(index, 1)
-            updatedState.dynamicStylesDropDownBox.splice(index,1)
+            updatedState.dynamicStylesDropDownBox.splice(index, 1)
 
             if (this.props.touched && this.props.valid && updatedState.dynamicStyles.includes(styles.InValidSelectBoxFocused)) {
                 index = updatedState.dynamicStyles.indexOf(styles.InValidSelectBoxFocused)
                 updatedState.dynamicStyles.splice(index, 1)
-                updatedState.dynamicStylesDropDownBox.splice(index,1)
+                updatedState.dynamicStylesDropDownBox.splice(index, 1)
             }
         }
         updatedState.showItemList = !updatedState.showItemList
@@ -141,10 +178,10 @@ class MultipleSelect extends React.Component {
                 if (newDyanamicStyle.includes(styles.InValidSelectBoxFocused)) {
                     let indexOfInvalidSelectBoxFocused = newDyanamicStyle.indexOf(styles.InValidSelectBoxFocused)
                     newDyanamicStyle.splice(indexOfInvalidSelectBoxFocused, 1)
-                    newDyanamicStyleDropDownBox.splice(indexOfInvalidSelectBoxFocused,1)
+                    newDyanamicStyleDropDownBox.splice(indexOfInvalidSelectBoxFocused, 1)
                 }
                 newDyanamicStyle.splice(index, 1)
-                newDyanamicStyleDropDownBox.splice(index,1)
+                newDyanamicStyleDropDownBox.splice(index, 1)
                 return {
                     dynamicStyles: newDyanamicStyle,
                     dynamicStylesDropDownBox: newDyanamicStyleDropDownBox
@@ -177,6 +214,7 @@ class MultipleSelect extends React.Component {
     render() {
         return (
             <div
+                ref={this.toggleContainer}
                 className={styles.SelectBoxContainer}
                 disabled={this.props.controlConfig.disabled}
                 id={this.props.controlConfig.id}
@@ -187,7 +225,9 @@ class MultipleSelect extends React.Component {
                         onClick={this.showOrHideDropDown}>
                         {this.state.selectedValues.length > 0 ? this.state.selectedValues.join(',') : this.props.controlConfig.placeholder}
                     </div>
-                    <div className={this.state.dynamicStylesDropDownBox.join(' ')}>
+                    <div 
+                    onClick={this.showOrHideDropDown}
+                    className={this.state.dynamicStylesDropDownBox.join(' ')}>
                         <div
                             className={this.state.showItemList ? styles.SelectBoxUp : styles.SelectBoxDown}
                             onClick={this.showOrHideDropDown}
@@ -201,7 +241,7 @@ class MultipleSelect extends React.Component {
                     {this.props.items.map(item => {
                         return (
                             <div
-                                className={this.state.selectedValues.includes(item.value) ? [styles.ItemList, styles.selected].join(' ') : styles.ItemList}
+                                className={this.state.selectedValues.includes(item.value) ? styles.selected : ''}
                                 key={item.id}
                                 onClick={() => this.selectOrDeselectItem(item)}
                             >{item.value} </div>
@@ -209,11 +249,6 @@ class MultipleSelect extends React.Component {
                     })}
                 </div> : null}
             </div>
-
-
-
-
-
         )
 
     }

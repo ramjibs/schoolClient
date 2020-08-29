@@ -1,40 +1,37 @@
 .Layout {
-    width: 100%;
-}
-
-.Toolbar {
-
-    display: block;
-    position: fixed;
-    background-color:#07a1a1;
-    height: 100vh;
-    width: 250px;
-}
-.Pages{
-
-   display: block;
-    padding: 10px;
-    height: 100vh;
-    /* background-color:#2a6868; */
-    margin-left: 250px;
-    /* width: 100%; */
-
-}
-
-/* ::-webkit-scrollbar {
-    display: none;
-  } */
-
-
-  @media only screen and (max-width: 767px) {  
-    .Toolbar{
-      display: none;
-   }
-   .Pages {
-       margin-top: 30px;
-       margin-left: 0px;
-   }
    
-   } 
+   min-height: 100vh;
+
+}
+
+.SideBar {
+
+    position: fixed;
+    width: 18rem !important;
+    transition: ease-in-out width .28s;
+    top:0;
+    bottom:0;
+    left:0;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.PageContainer{
+
+    margin-left: 18rem;
+    padding: 1rem;
+    transition: margin-left .28s;
+}
+
+.SideBarClosed {
+    width: 3.6rem !important;
+}
+
+.PageContainerExpand{
+    margin-left: 3.6rem;
+}
+
+
+
 
   

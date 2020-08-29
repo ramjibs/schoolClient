@@ -5,7 +5,7 @@ import Button from '../Button/Button'
 
 const Form = (props) => {
 
-    
+
     let controls = props.controls.map(object => {
 
         if (props.ignoreSpecialControls) {
@@ -24,7 +24,7 @@ const Form = (props) => {
                     touched={object.control.touched}
                     options={object.control.options}
                     changed={(event, i) => props.newEntryFromUser(event, object.id, i)}
-                    
+
                 />
             }
             else {
@@ -45,7 +45,7 @@ const Form = (props) => {
                 touched={object.control.touched}
                 options={object.control.options}
                 changed={(event) => props.newEntryFromUser(event, object.id)}
-                
+
 
             />
 
@@ -57,58 +57,61 @@ const Form = (props) => {
     for (let index = 0; index < props.specialControls.length; index++) {
         let inputs = [];
         let count
+        let margin
         let controlDesign = (
-            <fieldset>
+            <fieldset key={index + props.specialControlsHeading[index]}>
                 <legend>{props.specialControlsHeading[index]}</legend>
-            <div key={index + props.specialControlsHeading[index]}>
-                <div >
-                    {/* <label>{props.specialControlsHeading[index]}</label> <br /> <br /> */}
+                {props.controls.forEach(elements => {
+                    if (elements.id === props.specialControls[index]) {
+                        for (let element in elements.control) {
+                            count = <div key={element + elements.id} className={styles.SpecialControls}>
+                                <label className={styles.SpecialControlsCount}>{parseInt(element) + 1}.</label>
+                                {parseInt(element + 1) > 1 ? <Button
+                                    buttonType='delete'
+                                    clicked={(event) => props.deleteControl(event, props.specialControls[index], parseInt(element))}
+                                    buttonName={'Delete ' + props.specialControlsHeading[index]}
+                                /> : null}
 
-                    {props.controls.forEach(elements => {
-                        if (elements.id === props.specialControls[index]) {
-                            for (let element in elements.control) {
-                                count = <div key={element + elements.id} className={styles.SpecialControlCount}>
-                                    <label>{parseInt(element) + 1}.</label>
-                                    {parseInt(element + 1) > 1 ? <Button
-                                        buttonType='delete'
-                                        clicked={(event) => props.deleteControl(event, props.specialControls[index], parseInt(element))}
-                                        buttonName={'Delete ' + props.specialControlsHeading[index]}
-                                    /> : null}
-
-                                </div>
-                                inputs.push(count)
-                                let objects = elements.control[element]
-                                for (let object in objects) {
-                                    let input = <Input
-                                        key={index + elements.id + objects[object].controlConfig.id + element}
-                                        controlType={objects[object].controlType}
-                                        controlConfig={objects[object].controlConfig}
-                                        radioButtons={objects[object].buttons}
-                                        label={objects[object].label}
-                                        notRequiredLabel={objects[object].notRequiredLabel}
-                                        value={objects[object].value}
-                                        valid={objects[object].valid}
-                                        errorMessage={objects[object].errorMessage}
-                                        touched={objects[object].touched}
-                                        options={objects[object].options}
-                                        changed={(event, ) => props.newEntryFromUser(event, props.specialControls[index], parseInt(element), objects[object].controlConfig.name)}
-                                    />
-
-                                    inputs.push(input)
-                                }
-
-
+                            </div>
+                            inputs.push(count)
+                            let inputControlsArr = []
+                            let inputControls = null
+                            let objects = elements.control[element]
+                            for (let object in objects) {
+                                let input = <Input
+                                    key={index + elements.id + objects[object].controlConfig.id + element}
+                                    controlType={objects[object].controlType}
+                                    controlConfig={objects[object].controlConfig}
+                                    radioButtons={objects[object].buttons}
+                                    label={objects[object].label}
+                                    notRequiredLabel={objects[object].notRequiredLabel}
+                                    value={objects[object].value}
+                                    valid={objects[object].valid}
+                                    errorMessage={objects[object].errorMessage}
+                                    touched={objects[object].touched}
+                                    options={objects[object].options}
+                                    changed={(event,) => props.newEntryFromUser(event, props.specialControls[index], parseInt(element), objects[object].controlConfig.name)}
+                                />
+                                inputControlsArr.push(input)
                             }
+                            inputControls = <div
+                                key={element + elements.id + element + element.id}
+                                className={styles.FormSpecialControls}>
+                                {inputControlsArr}
+                            </div>
+                            inputs.push(inputControls)
+                            margin = <div key={element + elements.id + element} className={styles.SpecialControlsMargin}></div>
+                            inputs.push(margin)
 
                         }
 
-                    })}
-
-                    {inputs}
 
 
+                    }
 
-                </div>
+                })}
+                {inputs}
+
                 <Button
                     isDisabled={props.buttonDisabledStatus[index].isDisabled}
                     buttonType='add'
@@ -116,15 +119,10 @@ const Form = (props) => {
                     buttonName={'Add ' + props.specialControlsHeading[index]}
                 />
 
-
-
-            </div>
             </fieldset>
 
         )
         specialControls.push(controlDesign)
-
-
 
     }
 
@@ -132,30 +130,30 @@ const Form = (props) => {
         <form
             className={styles.Form}
             onSubmit={props.submitForm}>
-            <h2 style={{
-                'fontFamily': 'cursive',
-                'color': ' #00cccc'
-            }}>{props.formTitle}</h2>
-            {controls}
+            <h5 className={styles.FormTitle}>{props.formTitle}</h5>
+            <fieldset>
+                <legend>Basic Info</legend>
+                <div className={styles.FormControls}>
+                    {controls}
+                </div>
+            </fieldset>
+
+
             {specialControls}
 
             <div className={styles.FormSubmission}>
-
                 <Button
                     buttonType='submit'
                     isDisabled={!props.isFormSubmitDisabled}
                     loading={props.loading}
                     buttonName={'Add ' + props.formSubmitButtonName}
+                    errorBoxRequired
+                    errorMessage={props.errorSubmitForm}
                 />
-
                 <Button
                     buttonType='cancel'
                     buttonName={'Cancel'}
                 />
-
-
-
-
 
             </div>
 

@@ -1,0 +1,25 @@
+.SideBarContainer{
+    width: 100%;
+    background-color:rgb(16, 49, 88);
+    min-height: 100vh;
+    padding: 1rem;
+    padding-right: 0;
+    
+}
+
+.SideBarNavigation{
+
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin: 1rem;
+    margin-right: 0;
+    height: 4rem;
+        
+}
+
+.ActiveNavigation{
+    background-color: white;
+    color: rgb(16, 49, 88);;
+}

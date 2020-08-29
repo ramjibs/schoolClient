@@ -3,6 +3,7 @@ import styles from './Login.module.css'
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button'
 import { Link } from 'react-router-dom'
+
 const Login = (props) => {
 
 
@@ -40,7 +41,6 @@ const Login = (props) => {
 
                 />
             </form>
-            {/* {error} */}
             <Link
                 className={styles.ForgotPasswordLink}
                 to='/forgot-password'>Forgot Password ?</Link>
