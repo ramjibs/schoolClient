@@ -60,7 +60,12 @@ class LoginContainer extends Component {
         
         if(this.props.autoLogin && this.props.token && this.props.user){
             
-            this.props.history.replace('/home')
+            if(this.props.location.state){
+                this.props.history.replace(this.props.location.state.from.pathname)
+            }
+            else{
+                this.props.history.replace('/home')
+            }
             
         }
       

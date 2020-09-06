@@ -14,6 +14,12 @@
     left:0;
     z-index: 1001;
     overflow: hidden;
+    background-color:rgb(16, 49, 88);
+
+}
+
+.SideBarVisibility{
+    visibility: hidden;
 }
 
 .PageContainer{
@@ -24,11 +30,44 @@
 }
 
 .SideBarClosed {
+    
     width: 3.6rem !important;
 }
 
 .PageContainerExpand{
     margin-left: 3.6rem;
+}
+
+.SideBarHeader{
+    display: flex;
+}
+.AppName{
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background: rgb(16, 49, 88);
+    color:white;
+    flex:3;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+.SideBarMenuContainer{
+    display: flex;
+    background: rgb(16, 49, 88);
+    height: 4rem;
+    padding:.5rem;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.SideBarMenuContainer span{
+    width: 3rem;
+    border: 1px solid white;
+    background: white;
+}
+
+.SideBarMenuContainer:hover{
+    cursor: pointer;
 }
 
 

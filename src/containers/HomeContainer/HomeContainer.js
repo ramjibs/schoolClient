@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react'
 import Layout from '../../hoc/Layout/Layout'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import ErrorBoundry from '../../components/UI/Error/ErrorBoundry'
 import Loader from '../../components/UI/Loader/Loader'
 import DashboardContainer from '../Dashboard/DashboardContainer'
@@ -27,7 +27,100 @@ class HomeContainer extends Component {
         super(props)
         this.pathname = this.props.match.path
         this.url = this.props.match.url
-        this.navigationMenus = ['dashboard','teachers', 'students', 'classrooms', 'timetable', 'exams', 'reports', 'settings', 'logout' ]
+        this.navigation = [
+            {   
+
+
+                navHead: 'dashboard',
+                headLink: 'dashboard',
+                navChilds: [
+                    'dummy1', 'dummy2', 'dummy3'
+                ],
+                childsLink:[
+                    'dummy1', 'dummy2', 'dummy3'
+                ]
+            },
+            {
+                navHead: 'teachers',
+                headLink: 'teachers',
+                navChilds: [
+                    'dummy7', 'add teacher', 'dummy8'
+                ],
+                childsLink:[
+                    'dummy7', 'addteacher', 'dummy8'
+                ]
+            },
+            {
+                navHead: 'students',
+                headLink: 'students',
+                navChilds: [
+                    'dummy4', 'dummy5', 'dummy90'
+                ],
+                childsLink:[
+                    'dummy4', 'dummy5', 'dummy90'
+                ]
+            },
+            {
+                navHead: 'classrooms',
+                headLink: 'classrooms',
+                navChilds: [
+                    'dummy9', 'dummy10', 'dummy11'
+                ],
+                childsLink:[
+                    'dummy9', 'dummy10', 'dummy11'
+                ]
+            },
+            {
+                navHead: 'time table',
+                headLink: 'timetable',
+                navChilds: [
+                    'dummy12', 'dummy13', 'dummy14'
+                ],
+                childsLink:[
+                    'dummy12', 'dummy13', 'dummy14'
+                ]
+            },
+            {
+                navHead: 'exam',
+                headLink: 'exam',
+                navChilds: [
+                    'dummy15', 'dummy16', 'dummy17'
+                ],
+                childsLink:[
+                    'dummy15', 'dummy16', 'dummy17'
+                ]
+            },
+            {
+                navHead: 'reports',
+                headLink: 'reports',
+                navChilds: [
+                    'dummy18', 'dummy19', 'dummy20'
+                ],
+                childsLink:[
+                    'dummy18', 'dummy19', 'dummy20'
+                ]
+            },
+            {
+                navHead: 'settings',
+                headLink: 'settings',
+                navChilds: [
+                    'dummy21', 'dummy22', 'dummy23'
+                ],
+                childsLink:[
+                    'dummy21', 'dummy22', 'dummy23'
+                ]
+            },
+            {
+                navHead: 'logout',
+                headLink: 'logout',
+                navChilds: [
+                    'dummy24', 'dummy25', 'dummy26'
+                ],
+                childsLink:[
+                    'dummy24', 'dummy25', 'dummy26'
+                ]
+            },
+        ]
 
         this.routes = (
 
@@ -38,8 +131,8 @@ class HomeContainer extends Component {
                             <DashboardContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/teachers`} render={(routeProps) =>
-                        <ErrorBoundry key ={'teacher'}>
-                            <TeachersContainer {...routeProps}/>
+                        <ErrorBoundry key={'teacher'}>
+                            <TeachersContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/students`} render={(routeProps) =>
                         <ErrorBoundry key={'students'}>
@@ -47,47 +140,46 @@ class HomeContainer extends Component {
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/classrooms`} render={(routeProps) =>
                         <ErrorBoundry key={'classrooms'}>
-                            <ClassroomsContainer {...routeProps}/>
+                            <ClassroomsContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/timetable`} render={(routeProps) =>
                         <ErrorBoundry key={'timetable'}>
-                            <TimetableContainer {...routeProps}/>
+                            <TimetableContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/exams`} render={(routeProps) =>
                         <ErrorBoundry key={'exams'}>
-                            <ExamsContainer {...routeProps}/>
+                            <ExamsContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/reports`} render={(routeProps) =>
                         <ErrorBoundry key={'reports'}>
-                            <ReportsContainer {...routeProps}/>
+                            <ReportsContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/settings`} render={(routeProps) =>
                         <ErrorBoundry key={'settings'}>
-                            <SettingsContainer {...routeProps}/>
+                            <SettingsContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Route path={`${this.pathname}/logout`} render={(routeProps) =>
                         <ErrorBoundry key={'logout'}>
-                            <LogoutContainer {...routeProps}/>
+                            <LogoutContainer {...routeProps} />
                         </ErrorBoundry>} />
-
-
+                    <Redirect exact path={`${this.pathname}/`} to={`${this.pathname}/teachers`}/>
+                    
                 </Switch>
             </Suspense>
 
         )
 
-        
+
 
 
     }
 
     componentDidMount() {
-
-        this.props.history.push(`${this.url}/teachers`)
+       
         this.props.onRequestAllSubjects()
         this.props.onRequestAllStates()
         this.props.onRequestAllCategories()
-        
+
 
 
     }
@@ -97,7 +189,11 @@ class HomeContainer extends Component {
 
         return (
 
-            <Layout sidebar={<SideBar navigationMenus = {this.navigationMenus} />}>
+            <Layout
+                AppName={'Schoolit'}
+                sidebar={
+                    <SideBar navigation={this.navigation} />
+                }>
                 {this.routes}
             </Layout>
 
@@ -106,12 +202,7 @@ class HomeContainer extends Component {
 }
 
 
-// const MapStateToProps = state => {
-//     return {
-//         subjects: state.resource.subjects,
-//         states: state.resource.states
-//     }
-// }
+
 
 const MapDispatchToProps = dispatch => {
     return {

@@ -1477,7 +1477,7 @@ class AddTeacherContainer extends React.Component {
         }
 
         return (
-            <div>
+           
                 <AddTeacher
                     controls={controls}
                     ignoreSpecialControls
@@ -1493,7 +1493,7 @@ class AddTeacherContainer extends React.Component {
                     formTitle='Enroll New Teacher'
                     loading = {this.props.addNewTeacherLoading}
                 />
-            </div>
+            
         )
     }
 
