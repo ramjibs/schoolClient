@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from '../../components/UI/Loader/Loader'
-import * as actionCreators from '../../store/actions'
 class AutoLoginContainer extends Component {
 
     componentDidUpdate() {
@@ -9,18 +8,13 @@ class AutoLoginContainer extends Component {
           
             this.props.history.replace('/login')
         }
-        if (this.props.autoLogin && this.props.token && !this.props.loading && this.props.user) {
+        else if (this.props.autoLogin && this.props.token && !this.props.loading && this.props.user) {
             
             this.props.history.replace('/home')
         }
     }
 
-    componentDidMount() {
-        
-        let token = localStorage.getItem('token')
-        this.props.onAuth(token)
-       
-    }
+    
     render() {
 
         return (
@@ -42,12 +36,8 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (token) => dispatch(actionCreators.auth(token)),
-    }
-}
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AutoLoginContainer)
+
+export default connect(mapStateToProps)(AutoLoginContainer)
