@@ -22,7 +22,6 @@ class TeachersContainer extends Component {
                 <Route path={`${this.pathname}/dummy7`} render={() => <div>dummy 7 link</div>} />
                 <Route path={`${this.pathname}/dummy8`} render={() => <div>dummy 8 link</div>} />
                 <Redirect exact path={`${this.pathname}/`} to={`${this.pathname}/dummy7`} />
-                {/* <Route  render={() => <div>dummy 7 link</div>} /> */}
 
             </Switch>
 

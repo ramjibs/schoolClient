@@ -40,8 +40,7 @@ class App extends Component {
               authLoading={this.props.loading}
               authUser={this.props.user}
               authError={this.props.error}
-              path='/home' />
-            {/* <Redirect path='*' to='/' /> */}
+              path='/home'/>
           </Suspense>
         </Switch>
       </ErrorBoundry>

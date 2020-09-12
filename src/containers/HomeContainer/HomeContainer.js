@@ -163,7 +163,6 @@ class HomeContainer extends Component {
                             <LogoutContainer {...routeProps} />
                         </ErrorBoundry>} />
                     <Redirect exact path={`${this.pathname}/`} to={`${this.pathname}/teachers`}/>
-                    
                 </Switch>
             </Suspense>
 
