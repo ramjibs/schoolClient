@@ -41,6 +41,8 @@ class App extends Component {
               authUser={this.props.user}
               authError={this.props.error}
               path='/home'/>
+            
+
           </Suspense>
         </Switch>
       </ErrorBoundry>

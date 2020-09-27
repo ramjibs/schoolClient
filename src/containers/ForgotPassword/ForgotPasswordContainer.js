@@ -4,104 +4,119 @@ import * as actionCreators from '../../store/actions'
 import checkValidityHandler from '../../FormValidation/formValidation'
 import ForgotPassword from '../../components/ForgotPassword/forgotPassword'
 import styles from './ForgotPasswordContainer.module.css'
-
+import NavBar from '../../components/Navigation/NavBar/NavBar'
 class ForgotPasswordContainer extends Component {
 
 
 
-    state = {
-        controls: {
-            userId: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'text',
-                    name: 'userid',
-                    id: 'userid',
-                    placeholder: 'your email or user id',
-                    disabled: false
-                },
-                label: 'User ID',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-                }
-
-            },
-            newPassword: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'password',
-                    name: 'newpassword',
-                    id: 'newpassword',
-                    placeholder: 'your password',
-                    disabled: false
-                },
-                label: 'New Password',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-                    minLength: 8,
-                    
-                }
-
-            },
-            confirmPassword: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'password',
-                    name: 'confirmPassword',
-                    id: 'confirmPassword',
-                    placeholder: 'retype password',
-                    disabled: false
-                },
-                label: 'Confirm Password',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-                    matchValue: true,
-                    matchWith: ''
-                }
-
-            },
-            Otp: {
-                controlType: 'otp',
-                controlConfig: {
-                    type: 'text',
-                    placeholder: '',
-                    disabled: false,
-                    maxLength: 1
-                },
-                label: 'OTP',
-                value: [],
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    otpLength: 4,
-                },
-                otpLength: 4
-
-            },
-        },
-
-        otpButtonName: 'send otp',
-        otpButtondisabled: true,
-        otpMessage: '',
-        showPassAndOtp: false,
-    }
+    
 
     constructor(props) {
         super(props);
         this.sendOtpHandler = this.sendOtpHandler.bind(this);
+        this.state = {
+            controls: {
+                userId: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'text',
+                        name: 'userid',
+                        id: 'userid',
+                        placeholder: 'your email or user id',
+                        disabled: false
+                    },
+                    label: 'User ID',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+                    }
+    
+                },
+                newPassword: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'password',
+                        name: 'newpassword',
+                        id: 'newpassword',
+                        placeholder: 'your password',
+                        disabled: false
+                    },
+                    label: 'New Password',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+                        minLength: 8,
+                        
+                    }
+    
+                },
+                confirmPassword: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'password',
+                        name: 'confirmPassword',
+                        id: 'confirmPassword',
+                        placeholder: 'retype password',
+                        disabled: false
+                    },
+                    label: 'Confirm Password',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+                        matchValue: true,
+                        matchWith: ''
+                    }
+    
+                },
+                Otp: {
+                    controlType: 'otp',
+                    controlConfig: {
+                        type: 'text',
+                        placeholder: '',
+                        disabled: false,
+                        maxLength: 1
+                    },
+                    label: 'OTP',
+                    value: [],
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        otpLength: 4,
+                    },
+                    otpLength: 4
+    
+                },
+            },
+    
+            otpButtonName: 'send otp',
+            otpButtondisabled: true,
+            otpMessage: '',
+            showPassAndOtp: false,
+        }
+        this.navigation = [
+            {
+                navHead: 'Sign Up',
+                headLink: 'signup'
+            },
+            {
+                navHead: 'Log In',
+                headLink: 'login'
+            },
+            {
+                navHead: 'About Us',
+                headLink: 'about-us'
+            }
+        ]
     }
 
 
@@ -253,8 +268,8 @@ class ForgotPasswordContainer extends Component {
 
         return (
             <div className={styles.ForgotPasswordContainer}>
+                <NavBar navigation={this.navigation}/>
                 <h5 className={styles.Title}>forgot Password</h5>
-                {/* <div className={styles.nav}></div> */}
                 <ForgotPassword
                     controls={controls}
                     changed={this.valueChangeHandler}

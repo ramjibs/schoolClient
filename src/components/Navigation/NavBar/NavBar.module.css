@@ -1,0 +1,32 @@
+.NavBarContainer{
+    display: flex;
+    flex-direction: row-reverse;
+    height: 7rem;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    top:0;
+    left: 0;
+    border-bottom: 0.5px solid  rgb(229, 227, 221);;
+    box-shadow: 0 3px  rgba(80, 76, 76, 0.1);;
+}
+
+.NavBarItem{
+    text-decoration: none;
+    color: black;
+    margin: 1.5rem;
+    align-self: center;
+}
+
+.NavBarItem:hover{
+    
+    border-bottom: 1px solid;
+}
+
+.NavigationItemActive{
+    color: rgb(41, 133, 175);  
+}
+
+.NavigationItemActive:hover{
+    border-bottom: 0;
+}

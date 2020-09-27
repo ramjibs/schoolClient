@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import NavBar from '../../components/Navigation/NavBar/NavBar'
 import styles from './SignupContainer.module.css'
 import { connect } from 'react-redux'
 import * as actionCreators from '../../store/actions'
@@ -7,92 +7,111 @@ import checkValidityHandler from '../../FormValidation/formValidation'
 import Signup from '../../components/Signup/Signup'
 class SignupContainer extends Component {
 
-    state = {
-        controls: {
-            schoolName: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'text',
-                    name: 'schoolName',
-                    id: 'schoolName',
-                    placeholder: 'your school name',
-                    disabled: false
+    constructor(props){
+        super(props)
+        this. state = {
+            controls: {
+                schoolName: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'text',
+                        name: 'schoolName',
+                        id: 'schoolName',
+                        placeholder: 'your school name',
+                        disabled: false
+                    },
+                    label: 'School Name',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+                    },
+    
                 },
-                label: 'School Name',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
+                email: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'email',
+                        name: 'email',
+                        id: 'email',
+                        placeholder: 'your school email id',
+                        disabled: false
+                    },
+                    label: 'Email',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+    
+                    },
+    
                 },
-
+                registrationNumber: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'text',
+                        name: 'registrationNumber',
+                        id: 'registrationNumber',
+                        placeholder: 'your school registration number',
+                        disabled: false
+                    },
+                    label: 'Registration Number',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+    
+                    },
+    
+    
+                },
+                licenseNumber: {
+                    controlType: 'input',
+                    controlConfig: {
+                        type: 'text',
+                        name: 'licenseNumber',
+                        id: 'licenseNumber',
+                        placeholder: 'your school license number',
+                        disabled: false
+                    },
+                    label: 'License Number',
+                    value: '',
+                    valid: false,
+                    errorMessage: '',
+                    touched: false,
+                    validation: {
+                        required: true,
+                        minLength: 8
+                    },
+    
+                },
+    
             },
-            email: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'email',
-                    name: 'email',
-                    id: 'email',
-                    placeholder: 'your school email id',
-                    disabled: false
-                },
-                label: 'Email',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-
-                },
-
+    
+        }
+        this.navigation = [
+            {
+                navHead: 'Sign Up',
+                headLink: 'signup'
             },
-            registrationNumber: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'text',
-                    name: 'registrationNumber',
-                    id: 'registrationNumber',
-                    placeholder: 'your school registration number',
-                    disabled: false
-                },
-                label: 'Registration Number',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-
-                },
-
-
+            {
+                navHead: 'Log In',
+                headLink: 'login'
             },
-            licenseNumber: {
-                controlType: 'input',
-                controlConfig: {
-                    type: 'text',
-                    name: 'licenseNumber',
-                    id: 'licenseNumber',
-                    placeholder: 'your school license number',
-                    disabled: false
-                },
-                label: 'License Number',
-                value: '',
-                valid: false,
-                errorMessage: '',
-                touched: false,
-                validation: {
-                    required: true,
-                    minLength: 8
-                },
-
-            },
-
-        },
-
+            {
+                navHead: 'About Us',
+                headLink: 'about-us'
+            }
+        ]
     }
+
+   
 
     componentDidUpdate() {
         if (this.props.signupSuccess) {
@@ -150,6 +169,7 @@ class SignupContainer extends Component {
         return (
 
             <div className={styles.SignupContainer}>
+                <NavBar navigation={this.navigation}/>
                 <div className={styles.AboutSchool}>
                     <h1 className={styles.AboutSchoolTitle}>School.It</h1>
                     <p className={styles.AboutSchoolContent}>A Paperless Office for your Organization
