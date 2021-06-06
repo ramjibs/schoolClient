@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import AutoLoginContainer from './containers/AutoLoginContainer/AutoLoginContainer';
 import { connect } from 'react-redux'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Loader from './components/UI/Loader/Loader'
 import ErrorBoundry from './components/UI/Error/ErrorBoundry'
 import * as actionCreators from './store/actions'

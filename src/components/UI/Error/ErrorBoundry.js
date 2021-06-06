@@ -31,9 +31,6 @@ class ErrorBoundry extends Component {
         this.setState({
             hasError: true
         })  
-
-        // this.hasError = true
-
        
         // You can also log error messages to an error reporting service here
     }

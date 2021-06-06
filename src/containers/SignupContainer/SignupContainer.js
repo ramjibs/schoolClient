@@ -9,7 +9,7 @@ class SignupContainer extends Component {
 
     constructor(props){
         super(props)
-        this. state = {
+        this.state = {
             controls: {
                 schoolName: {
                     controlType: 'input',
